@@ -16,6 +16,10 @@ es lo que tendremos que hacer.
     - [PDF con instrucciones](#pdf-con-instrucciones)
   - [Publicación de sitio web con GitHub Pages](#publicación-de-sitio-web-con-github-pages)
     - [GitHub Actions: GitHub Pages Action](#github-actions-github-pages-action)
+  - [GitHub Actions y puntos a considerar](#github-actions-y-puntos-a-considerar)
+    - [Parámetros obligatorios para el archivo](#parámetros-obligatorios-para-el-archivo)
+    - [Ejecutar GitHub Action en `push` y `pull request` a `main`](#ejecutar-github-action-en-push-y-pull-request-a-main)
+  - [Fuentes](#fuentes)
 
 ## Fecha de inicio y de entrega
 
@@ -113,6 +117,28 @@ los parámetros obligatorios en el archivo `YAML` son los siguientes:
   - El tipo de máquina en el que se ejecutará el trabajo (job). Puede ser tanto
     GitHub-hosted runner como un self-hosted runner.
 
+### Instalación de la GitHub Action: `actions-gh-pages` en repositorio
+
+En la sección
+[Getting started](https://github.com/marketplace/actions/github-pages-action#getting-started "GitHub Pages Action / Getting started")
+indica lo siguiente:
+
+> Add your workflow file `.github/workflows/gh-pages.yml` and push it to your
+> remote default branch.
+
+---
+
+En el sitio de la action que se encuentra en el marketplace de GitHub
+([GitHub / peaceiris / actions-gh-page](https://github.com/peaceiris/actions-gh-pages "GitHub / peaceiris / actions-gh-pages"))
+se encuentran las instrucciones de instalación, las cuales son las siguientes:
+
+1. Copy and paste the following snippet into your `.yml` file.
+
+```yml
+- name: GitHub Pages action
+  uses: peaceiris/actions-gh-pages@v3.7.3
+```
+
 ### Ejecutar GitHub Action en `push` y `pull request` a `main`
 
 En mi caso solo quiero subir los cambios a `gh-pages` una vez que pase el código
@@ -133,15 +159,18 @@ on:
       - main
 
 jobs:
+   # https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_id
+   # jobs.<job_id> <- Puede ser cualquier nombre mientras sea único.
    deploy:
+      name: Despliegue de la página en GitHub Pages
       # https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobs
-      # Hay que específicar un "runner environment" en donde se ejecutará el
+      # Hay que especificar un "runner environment" en donde se ejecutará el
       # "job".
       # Este entra en los límites del "workflow usage", ya que hay límites de
       # uso y costes por uso.
       #
       # https://docs.github.com/en/actions/learn-github-actions/usage-limits-billing-and-administration
-
+      runs-on: ubuntu-20.04
 
       # Concurrencia para que si hubiese más de una tarea en el workflow, se
       # ejecuten secuencialmente y solo se pueda ejecutar una tarea hasta que
@@ -149,10 +178,20 @@ jobs:
       concurrency:
          group: ${{ github.workflow }}-${{ github.ref }}
       steps:
+         # https://github.com/actions/checkout
+         # Indicamos que utilizamos esta versión de la action.
+         # Esta action permite hacer un check-out del repositorio para que el
+         # workflow pueda acceder al mismo.
+         - uses: actions/checkout@v2
+
          # Nombre del workflow. Este se muestra en la página de actions del
          # repositorio.
          - name: Deploy GitHub Page
-            uses: peaceiris/actions-gh-pages@v3
+            # https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsuses
+            # Indicar la versión que utilizamos de la versión. De lo contrario,
+            # esto podría romper los workflows o provocar comportamientos
+            # inesperados cuando el propietaro de la `action` haga una actualización.
+            uses: peaceiris/actions-gh-pages@v3.7.3
             with:
                # https://docs.github.com/en/actions/security-guides/automatic-token-authentication
                # Token único generado automáticamente.
@@ -170,3 +209,6 @@ jobs:
 - [Administrar tu límite de gastos para GitHub Actions](https://docs.github.com/es/billing/managing-billing-for-github-actions/managing-your-spending-limit-for-github-actions "Administrar tu límite de gastos para GitHub Actions")
 - [Acerca de la facturación para GitHub Actions](https://docs.github.com/es/billing/managing-billing-for-github-actions/about-billing-for-github-actions "Acerca de la facturación para GitHub Actions")
 - [Lista de GitHub-hosted runners / Virtual environments](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idruns-on "Lista de GitHub-hosted runners / Virtual environments")
+- [GitHub / actions / checkout](https://github.com/actions/checkout "GitHub / actions / checkout")
+- [GitHub Pages action](https://github.com/marketplace/actions/github-pages-action "GitHub Pages action")
+- [GitHub / peaceiris / actions-gh-page](https://github.com/peaceiris/actions-gh-pages "GitHub / peaceiris / actions-gh-pages")

@@ -14,5 +14,12 @@
    * workspace aunque este esté dentro, no mostrará las variables.
    */
   "cssvar.files": ["css/*.css"],
-  "cssvar.extensions": ["css"]
+  "cssvar.extensions": ["css"],
+
+  // Quiero ver los archivos ocultos de git (.git) en este workspace para poder
+  // configurar las GitHub Actions.
+  // - No lo hago en las configuraciones globales porque no es necesario.
+  "files.exclude": {
+    "**/.git": false
+  }
 }
