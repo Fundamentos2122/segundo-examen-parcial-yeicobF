@@ -10,6 +10,13 @@ es lo que tendremos que hacer.
 >
 > [**Framework CSS hecho en clase / 2P**](https://github.com/Fundamentos2122/framework-css-yeicobF.git "Framework CSS hecho en clase / 2P")
 
+- [FDW: Examen 2P - Lista de tareas](#fdw-examen-2p---lista-de-tareas)
+  - [Fecha de inicio y de entrega](#fecha-de-inicio-y-de-entrega)
+  - [Instrucciones](#instrucciones)
+    - [PDF con instrucciones](#pdf-con-instrucciones)
+  - [Publicación de sitio web con GitHub Pages](#publicación-de-sitio-web-con-github-pages)
+    - [GitHub Actions: GitHub Pages Action](#github-actions-github-pages-action)
+
 ## Fecha de inicio y de entrega
 
 |                  Inicio                  |                 Entrega                 |
@@ -36,3 +43,130 @@ siguientes puntos:
 ### PDF con instrucciones
 
 [FDW - Instrucciones examen segundo parcial](INSTRUCCIONES_Segundo%20Examen%20Parcial.pdf "FDW - Instrucciones examen segundo parcial")
+
+## Publicación de sitio web con GitHub Pages
+
+Para publicar el sitio web, podemos hacerlo normalmente eligiendo una rama de
+nuestro repositorio, pero solo podemos publicar el sitio si tenemos el contenido
+en:
+
+- `/(root)`
+- `/docs/`
+
+En mi caso, prefiero tener el código en una carpeta `./src/`, y de ahí es en
+donde me gustaría publicar el sitio web. El problema es que, de base no se puede
+publicar solo el contenido de un directorio, y hacerlo con las ramas manualmente
+teniendo una estructura de archivos diferentes (que en la rama de la página solo
+se tenga lo que está dentro de `./src/` en el root en lugar de toda la
+estructura) es un lío y solo me rompo la cabeza.
+
+### GitHub Actions: GitHub Pages Action
+
+Encontré una herramienta que me ayudaría a lidiar con esta situación: **GitHub
+Actions**, en la cual, se pueden configurar flujos o acciones a partir de
+ciertos activadores que nosotros podemos indicar dependiendo de la acción.
+
+Para este caso encontré una llamada
+"[**GitHub Pages Action**](peaceiris/actions-gh-pages "https://github.com/marketplace/actions/github-pages-action#getting-started")"
+y está muy bien documentada. Es verdad que nunca he utilizado GitHub Actions,
+por lo que me llego a confundir, pero es la herramienta que utilicé.
+
+En mi caso quiero publicar la carpeta `./src` cuando haga un `push` a `main` a
+la rama `gh-pages` o cuando se haga un `Pull Request`, dado a que trabajaré en
+otra rama para que no se envíe al sitio todo lo que haga, ya que a veces no subo
+código del todo funcional.
+
+## GitHub Actions y puntos a considerar
+
+Hay diversos puntos a tomar en cuenta al utilizar GitHub Actions. A continuación
+indicaré algunos:
+
+- Hay un límite de minutos gratis por mes dependiendo del tipo de cuenta
+- Al exceder el límite gratuito, se comenzará a cobrar una cuota dependiendo de
+  lo que se utilice. Esto puede ser limitado con un límite de gastos en tu
+  cuenta o en GitHub Actions.
+- Los "jobs" hospedados por GitHub pueden ser ejecutados en `Windows`, `macOS` y
+  `Linux`, pero hay una gran problemática: `Windows` y `macOS` tienen
+  multiplicadores de minutos, mientras que `Linux` no. Los multiplicadores son
+  los siguientes:
+  - `Windows`: **x2**
+  - `macOS`: **_x10_**
+  - `Linux`: x1
+- En el parámetro `job: runs-on:` se especifica el tipo de la máquina en la cual
+  se ejecutará el "job". Esta puede ser tanto "GitHub-hosted runner" o una
+  "self-hosted runner" que ejecutemos nosotros.
+  - La lista de los GitHub-hosted runners se encuentra en el siguiente enlace:
+    - [Lista de GitHub-hosted runners / Virtual environments](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idruns-on "Lista de GitHub-hosted runners / Virtual environments")
+      > En mi caso utilicé `Ubuntu 20.04` por lo mencionado anteriormente
+      > respecto a los multiplicadores en los otros SO. El `YAML workflow label`
+      > es: `ubuntu-latest` o `ubuntu-20.04`.
+
+### Parámetros obligatorios para el archivo
+
+Según la
+[documentación de GitHub respecto a GitHub actions](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions "documentación de GitHub respecto a GitHub actions")
+los parámetros obligatorios en el archivo `YAML` son los siguientes:
+
+- [on](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#on "on")
+  - Evento de GitHub que activa el workflow.
+- [jobs.<job_id>.runs-on](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idruns-on "jobs.<job_id>.runs-on")
+  - El tipo de máquina en el que se ejecutará el trabajo (job). Puede ser tanto
+    GitHub-hosted runner como un self-hosted runner.
+
+### Ejecutar GitHub Action en `push` y `pull request` a `main`
+
+En mi caso solo quiero subir los cambios a `gh-pages` una vez que pase el código
+a `main`, ya que sería el funcional. Esto podría ser a través de un `push`
+directamente o mediante un `pull request` en `main`, por lo que tengo que
+indicarlo para que no se suban los cambios de otras ramas también.
+
+```yaml
+name: Deploy GitHub Pages desde main
+
+on:
+   # Que el workflow se active en un push o pull request en la "main" branch.
+   push:
+      branches:
+      - main
+   pull_request:
+      branches:
+      - main
+
+jobs:
+   deploy:
+      # https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobs
+      # Hay que específicar un "runner environment" en donde se ejecutará el
+      # "job".
+      # Este entra en los límites del "workflow usage", ya que hay límites de
+      # uso y costes por uso.
+      #
+      # https://docs.github.com/en/actions/learn-github-actions/usage-limits-billing-and-administration
+
+
+      # Concurrencia para que si hubiese más de una tarea en el workflow, se
+      # ejecuten secuencialmente y solo se pueda ejecutar una tarea hasta que
+      # termine la anterior.
+      concurrency:
+         group: ${{ github.workflow }}-${{ github.ref }}
+      steps:
+         # Nombre del workflow. Este se muestra en la página de actions del
+         # repositorio.
+         - name: Deploy GitHub Page
+            uses: peaceiris/actions-gh-pages@v3
+            with:
+               # https://docs.github.com/en/actions/security-guides/automatic-token-authentication
+               # Token único generado automáticamente.
+               github_token: ${{ secrets.GITHUB_TOKEN }}
+               # Publicar contenido de ./src/
+               publish_dir: ./src
+```
+
+## Fuentes
+
+- [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#onpushpull_requestpaths "Workflow syntax for GitHub Actions")
+- [GitHub Actions — Run on Pull Request](https://futurestud.io/tutorials/github-actions-run-on-pull-request "GitHub Actions — Run on Pull Request")
+- [Automatic token authentication](https://docs.github.com/en/actions/security-guides/automatic-token-authentication "Automatic token authentication")
+- [Usage limits, billing, and administration](https://docs.github.com/en/actions/learn-github-actions/usage-limits-billing-and-administration "Usage limits, billing, and administration")
+- [Administrar tu límite de gastos para GitHub Actions](https://docs.github.com/es/billing/managing-billing-for-github-actions/managing-your-spending-limit-for-github-actions "Administrar tu límite de gastos para GitHub Actions")
+- [Acerca de la facturación para GitHub Actions](https://docs.github.com/es/billing/managing-billing-for-github-actions/about-billing-for-github-actions "Acerca de la facturación para GitHub Actions")
+- [Lista de GitHub-hosted runners / Virtual environments](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idruns-on "Lista de GitHub-hosted runners / Virtual environments")
