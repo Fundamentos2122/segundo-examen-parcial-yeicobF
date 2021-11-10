@@ -1,23 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- 
+    Pongo las meta tags porque estuve indagando y solo quería utilizarlas. 
+  -->
   <meta name="author" content="yeicobF">
   <meta name="description"
     content="Lista de tareas interactiva creada con HTML, CSS y JavaScript para el segundo examen parcial de Fundamentos de desarrollo web.">
 
+  <!-- PRELOADING -->
+  <!-- 
+    El otro día me encontré con esta técnica para "precargar" elementos de una
+    página, tales como los scripts, stylesheets o imágenes. Esto podría no tener
+    un impacto significativo en esta página, pero lo utilizo más que nada para
+    probarlo y recordarlo en futuras ocasiones.
+
+    Leí que se recomienda utilizarlo solo en situaciones realmente necesarias en
+    donde se requiere que un elemento tenga mayor prioridad de descarga. De otro
+    modo, contenido menos importante consumiría ancho de banda y CPU que podrían
+    haber sido otorgadas a elementos más importantes.
+  -->
+  <link rel="preload" href="js/app.js" as="script">
+  <link rel="preload"
+    href="https://fundamentos2122.github.io/framework-css-yeicobF/css/frameworks.css"
+    as="style">
+
+  <!-- STYLESHEETS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet"
+    href="https://fundamentos2122.github.io/framework-css-yeicobF/css/framework.css">
+
+  <!-- SCRIPTS -->
+  <!-- 
+    Uso del `defer` para cargar el script asíncronamente, pero utilizarlo solo
+    cuando se haya realizado el parse del HTML. Esto hará que no se bloquee el
+    parsing ni el renderizado del sitio. Esto debido a que, el parsing es
+    síncrono, entonces se interpreta el HTML en el orden que está. 
+
+    - Si ponemos el script encima del body, se hará el "fetch" y después se
+      ejecutará el script después de haber cargado todo el HTML.
+
+    - Si ponemos el script en head con "defer", se hará el "fetch" mientras se
+      hace el parse del HTML y cuando se termine de hacer el parsing, se
+      ejecutará el código.
+  -->
+  <script defer src="js/app.js"></script>
   <title>
     Lista de tareas | FDW - Examen 2P | Miércoles, 10 de noviembre del 2021
   </title>
 </head>
 
-<body>
-
-
-</body>
+<body></body>
 
 </html>

@@ -17,4 +17,21 @@ es lo que tendremos que hacer.
 
 ## Instrucciones
 
+Desarrollar una aplicación que sirva como lista de tareas que cumpla con los
+siguientes puntos:
+
+1. Tener un modal que despliegue el formulario para crear una tarea. Este debe
+   ser válido y solicitar al usuario que al menos se guarde el título de la
+   tarea.
+2. Las tareas se van guardando en LocalStorage. Para identificar cada una, crear
+   un ID auxiliar con la fecha en la que se crea la tarea (**investigarlo**).
+3. En la pantalla se debe desplegar la lista de las tarea que están sin
+   completar por default.
+4. Cuando se utilice el filtro de "ver todas" se deben visualizar todas las
+   tareas existentes y resaltar de alguna forma aquellas que ya han sido
+   completadas.
+5. La interfaz debe ser responsiva.
+
 ### PDF
+
+[FDW - Instrucciones examen segundo parcial](INSTRUCCIONES_Segundo%20Examen%20Parcial.pdf "FDW - Instrucciones examen segundo parcial")

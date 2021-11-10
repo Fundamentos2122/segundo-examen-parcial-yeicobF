@@ -1,5 +1,7 @@
 {
   "recommendations": [
-    "alefragnani.bookmarks"
+    "alefragnani.bookmarks",
+    "oderwat.indent-rainbow",
+    "vincaslt.highlight-matching-tag"
   ]
 }
