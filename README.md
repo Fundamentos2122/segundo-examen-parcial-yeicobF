@@ -12,8 +12,9 @@ es lo que tendremos que hacer.
 
 ## Fecha de inicio y de entrega
 
-- **_Inicio:_** **Lunes, 8 de noviembre del 2021 [6PM]**
-- **_Entrega:_** **Miércoles, 9 / NOV / 2021 [11:59PM]**
+|                  Inicio                  |                 Entrega                 |
+| :--------------------------------------: | :-------------------------------------: |
+| **Lunes, 8 de noviembre del 2021 [6PM]** | **Miércoles, 9 / NOV / 2021 [11:59PM]** |
 
 ## Instrucciones
 
@@ -32,6 +33,6 @@ siguientes puntos:
    completadas.
 5. La interfaz debe ser responsiva.
 
-### PDF
+### PDF con instrucciones
 
 [FDW - Instrucciones examen segundo parcial](INSTRUCCIONES_Segundo%20Examen%20Parcial.pdf "FDW - Instrucciones examen segundo parcial")
