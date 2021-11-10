@@ -1,5 +1,7 @@
 # FDW: Examen 2P - Lista de tareas
 
+[![Deploy GitHub Pages desde main](https://github.com/Fundamentos2122/segundo-examen-parcial-yeicobF/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/Fundamentos2122/segundo-examen-parcial-yeicobF/actions/workflows/gh-pages.yml)
+
 Examen del segundo parcial de Fundamentos de Desarrollo Web.
 
 En este parcial vimos JavaScript y la manipulación de HTML y el DOM, por lo que
@@ -10,10 +12,14 @@ es lo que tendremos que hacer.
 >
 > [**Framework CSS hecho en clase / 2P**](https://github.com/Fundamentos2122/framework-css-yeicobF.git "Framework CSS hecho en clase / 2P")
 
+---
+
 - [FDW: Examen 2P - Lista de tareas](#fdw-examen-2p---lista-de-tareas)
   - [Fecha de inicio y de entrega](#fecha-de-inicio-y-de-entrega)
   - [Instrucciones](#instrucciones)
     - [PDF con instrucciones](#pdf-con-instrucciones)
+  - [Creación de `branch` vacía para publicar página con GitHub Pages](#creación-de-branch-vacía-para-publicar-página-con-github-pages)
+    - [Pasos](#pasos)
   - [Publicación de sitio web con GitHub Pages](#publicación-de-sitio-web-con-github-pages)
     - [GitHub Actions: GitHub Pages Action](#github-actions-github-pages-action)
   - [GitHub Actions y puntos a considerar](#github-actions-y-puntos-a-considerar)
@@ -59,10 +65,9 @@ Para esto, quise crear una rama vacía en donde solo se encuentre el código que
 se suba automáticamente con GitHub Actions, por lo que seguí lo que indicaba la
 siguiente respuesta de Stack Overflow:
 
-> [How to create a new (and empty!) "root" > > > > > >
-> branch?](https://stackoverflow.com/a/60821184/13562806 "How to create a new
-> (and empty!) "root" branch?")
-> [git-switch](https://git-scm.com/docs/git-switch "git-switch")
+> [How to create a new (and empty!) "root" branch?](https://stackoverflow.com/a/60821184/13562806 'How to create a new (and empty!) "root" branch?')
+>
+> [Documentación Git: **git-switch**](https://git-scm.com/docs/git-switch "Documentación Git: git-switch")
 
 ```bash
 git switch --orphan YourBranchHere
@@ -266,6 +271,28 @@ jobs:
                # Nombre de la rama en donde publicaremos la GitHub Page.
                publish_branch: gh-pages  # default: gh-pages
 ```
+
+## Resultados de publicación en `branch` `gh-pages` mediante **GitHub Actions**
+
+Después de realizar los pasos anteriores pude verificar si funcionó lo que hice
+o no. Y, realmente funcionó. De hecho incluso se eliminó el `README.md` que
+había creado para publicar la rama y solo se publicó el código, por lo que fue
+muchísimo mejor de lo que esperaba.
+
+Por ahora solo ha sido activada la acción con `push` en `main` y funcionó, por
+lo que, me imagino que será igual con un Pull Request exitoso. Esto lo
+necesitaré porque trabajaré en otra rama con la cual solo subiré los cambios
+importantes.
+
+### Screenshots de cómo se ve esto en GitHub
+
+|                                                                                        Imagen                                                                                        | Descripción |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------: |
+|                [GitHub Actions - Runs from all workflows](screenshots/github-actions/runs-all-workflows-1-10-NOV-2021.png "GitHub Actions - Runs from all workflows")                |             |
+| [GitHub Actions - Runs for only gh-pages.yaml workflow](screenshots/github-actions/runs-gh-pages-workflow-1-10-NOV-2021.png "GitHub Actions - Runs for only gh-pages.yaml workflow") |             |
+|                  [GitHub Actions - Workflow file in GitHub](screenshots/github-actions/workflow-file-1-10-NOV-2021.png "GitHub Actions - Workflow file in GitHub")                   |             |
+|         [GitHub Actions - Workflow jobs and their statuses](screenshots/github-actions/workflow-jobs-1-10-NOV-2021.png "GitHub Actions - Workflow jobs and their statuses")          |             |
+|                      [GitHub Actions - 1 workflow summary](screenshots/github-actions/workflow-summary-1-10-NOV-2021.png "GitHub Actions - 1 workflow summary")                      |             |
 
 ## Fuentes
 
