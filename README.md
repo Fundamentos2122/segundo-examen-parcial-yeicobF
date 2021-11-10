@@ -51,11 +51,15 @@ siguientes puntos:
 
 ## Creación de `branch` vacía para publicar página con GitHub Pages
 
+> NOTA: Es importante que no tengas una rama ya publicada con el mismo nombre en
+> el repositorio remoto de GitHub,ya que no se podrá publicar la rama local que
+> crearás.
+
 Para esto, quise crear una rama vacía en donde solo se encuentre el código que
 se suba automáticamente con GitHub Actions, por lo que seguí lo que indicaba la
 siguiente respuesta de Stack Overflow:
 
-> [How to create a new (and empty!) "root" > >
+> [How to create a new (and empty!) "root" > > > > > >
 > branch?](https://stackoverflow.com/a/60821184/13562806 "How to create a new
 > (and empty!) "root" branch?")
 > [git-switch](https://git-scm.com/docs/git-switch "git-switch")
@@ -71,6 +75,38 @@ git switch --orphan YourBranchHere
   >
   > `--orphan <new-branch> ` Create a new orphan branch, named <new-branch>. All
   > tracked files are removed.
+
+### Pasos
+
+Realicé lo siguiente para crear la rama (comenzando desde `main`):
+
+```shell
+git switch --orphan gh-pages # Creamos rama sin archivos, historial ni parent.
+```
+
+Como se creó una rama sin "parent", historial ni archivos, no se podrá hacer
+push de la misma, por lo que hay que tener al menos algo de contenido para
+subirla.
+
+Creé un README con una línea de texto y la subí a GitHub. Después de eso ya pude
+establecerla como GitHub Page.
+
+```shell
+echo "# GitHub Pages branch" > README.md
+
+git add -A
+
+git commit -m "Creación branch vacía para GitHub Pages"
+
+git push -u origin gh-pages
+```
+
+Después de lo anterior, ya podríamos regresar a la rama principal, que en mi
+caso es `main`.
+
+```shell
+git checkout main
+```
 
 ## Publicación de sitio web con GitHub Pages
 
