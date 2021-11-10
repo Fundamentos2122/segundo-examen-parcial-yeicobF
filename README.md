@@ -18,6 +18,7 @@ es lo que tendremos que hacer.
     - [GitHub Actions: GitHub Pages Action](#github-actions-github-pages-action)
   - [GitHub Actions y puntos a considerar](#github-actions-y-puntos-a-considerar)
     - [Parámetros obligatorios para el archivo](#parámetros-obligatorios-para-el-archivo)
+    - [Instalación de la GitHub Action: `actions-gh-pages` en repositorio](#instalación-de-la-github-action-actions-gh-pages-en-repositorio)
     - [Ejecutar GitHub Action en `push` y `pull request` a `main`](#ejecutar-github-action-en-push-y-pull-request-a-main)
   - [Fuentes](#fuentes)
 
@@ -158,6 +159,11 @@ on:
       branches:
       - main
 
+   # Allows you to run this workflow manually from the Actions tab
+   # Permite ejecutar el workflow manualmente desde la pestaña de "Actions" en
+   # GitHub.
+   workflow_dispatch:
+
 jobs:
    # https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_id
    # jobs.<job_id> <- Puede ser cualquier nombre mientras sea único.
@@ -198,6 +204,8 @@ jobs:
                github_token: ${{ secrets.GITHUB_TOKEN }}
                # Publicar contenido de ./src/
                publish_dir: ./src
+               # Nombre de la rama en donde publicaremos la GitHub Page.
+               publish_branch: gh-pages  # default: gh-pages
 ```
 
 ## Fuentes

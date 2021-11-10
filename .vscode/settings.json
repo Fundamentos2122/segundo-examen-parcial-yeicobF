@@ -20,6 +20,6 @@
   // configurar las GitHub Actions.
   // - No lo hago en las configuraciones globales porque no es necesario.
   "files.exclude": {
-    "**/.git": false
+    "**/.git": false,
   }
 }
