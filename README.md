@@ -49,6 +49,29 @@ siguientes puntos:
 
 [FDW - Instrucciones examen segundo parcial](INSTRUCCIONES_Segundo%20Examen%20Parcial.pdf "FDW - Instrucciones examen segundo parcial")
 
+## Creación de `branch` vacía para publicar página con GitHub Pages
+
+Para esto, quise crear una rama vacía en donde solo se encuentre el código que
+se suba automáticamente con GitHub Actions, por lo que seguí lo que indicaba la
+siguiente respuesta de Stack Overflow:
+
+> [How to create a new (and empty!) "root" > >
+> branch?](https://stackoverflow.com/a/60821184/13562806 "How to create a new
+> (and empty!) "root" branch?")
+> [git-switch](https://git-scm.com/docs/git-switch "git-switch")
+
+```bash
+git switch --orphan YourBranchHere
+```
+
+- Tal como se encuentra en la documentación de Git:
+
+  > "Switch to a specified branch. The working tree and the index are updated to
+  > match the branch. All new commits will be added to the tip of this branch".
+  >
+  > `--orphan <new-branch> ` Create a new orphan branch, named <new-branch>. All
+  > tracked files are removed.
+
 ## Publicación de sitio web con GitHub Pages
 
 Para publicar el sitio web, podemos hacerlo normalmente eligiendo una rama de
