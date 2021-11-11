@@ -95,19 +95,39 @@ function showMissingInputModal(id_indicador_campos_completos) {
 /* ------------------------------ LocalStorage ------------------------------ */
 /* -------------------------- Guardar datos de form ------------------------- */
 
+/** Obtener tareas del form. */
+function getDatosTareaForm() {
+  // Crear un ID basado en tiempo.
+  // https://stackoverflow.com/a/40591207/13562806
+  const id = Date.now() + Math.random();
+  const titulo = todoForm["titulo"].value;
+  const descripcion = todoForm["descripcion"].value;
+  const fecha = todoForm["fecha"].value;
+  // Cuando declaramos el objeto con atributos de variables inicializadas, no se
+  // tienen que asignar explícitamente. Se hace implícito.
+  return (tareaObj = {
+    id,
+    titulo,
+    descripcion,
+    fecha,
+  });
+}
+
 /** Obtener tareas del LocalStorage y regresar como JSON. */
 function getTareasLocalStorage() {
   const tareasLs = localStorage.getItem(tareasLocalStorageKey);
-
-  return JSON.parse(tareasLs);
+  // Si el parse no es null, se utiliza su valor. Si sí es null, inicializar
+  // arreglo vacío.
+  const tareasArray = JSON.parse(tareasLs) ?? [];
+  return tareasArray;
 }
 
 /** Agregar tarea al LocalStorage como string. */
-function addTareaLocalStorage(tareasObj, tarea) {
+function saveTareaLocalStorage(tareasObj, tarea) {
   tareasObj.push(tarea);
 
   tareasString = JSON.stringify(tareasObj);
-  localStorage.setItem(tareasLocalStorageKey);
+  localStorage.setItem(tareasLocalStorageKey, tareasString);
 }
 
 /** Agrega tarea al DOM. */
@@ -115,7 +135,12 @@ function addTareaDom(tareaObj, listaTareasDom) {
   const nuevaTarea = document.createElement("div");
   nuevaTarea.className = "tarea";
 
-  nuevaTarea.innerHTML = `
+  /**
+   * Cadena con todo el HTML para ponerlo en innerHTML al final ya que esté
+   * todo formado. Si se pone el innerHTML en partes, se cierran automáticamente
+   * las etiquetas, ya que necesita un HTML formado.
+   */
+  let strInnerHTML = `
     <div class="tarea__info">
       <h2 class="tarea__info--title">
         ${tareaObj.titulo}
@@ -124,6 +149,8 @@ function addTareaDom(tareaObj, listaTareasDom) {
   /**
    * Fecha con formato dd/mm/AAAA
    * - La fecha del input se guarda con el formato: AAAA-MM-DD o nada.
+   *
+   * Solo agregar fecha si se especificó.
    */
   if (tareaObj.fecha) {
     // Generar array de tamaño 3.
@@ -135,34 +162,42 @@ function addTareaDom(tareaObj, listaTareasDom) {
       day,
     };
     // Solo agregar el tiempo si es que lo hay.
-    nuevaTarea.innerHTML += `
+    strInnerHTML += `
     <time datetime="${tareaObj.fecha}" class="tarea__info--time">
       ${fechaFormatoLocal.day}/${fechaFormatoLocal.month}/${fechaFormatoLocal.year}
     </time>`;
   }
   // Cerrar el tag.
-  nuevaTarea.innerHTML += "</div>";
+  strInnerHTML += "</div>";
   // Descripción.
-  nuevaTarea.innerHTML += `
+  strInnerHTML += `
     <p>${tareaObj.descripcion}</p>
     <div class="tarea__check">
       <input type="checkbox" title="Completada" name="completada" id="">
       <label for="completada">Completada</label>
     </div>
   `;
+
+  // Poner el innerHTML con la cadena ya formada.
+  nuevaTarea.innerHTML = strInnerHTML;
   listaTareasDom.appendChild(nuevaTarea);
 }
 
 /**
- * Guardar una tarea en el LocalStorage.
+ * Haz todo el procedimiento de obtención de tweets, añadirlos al DOM y todo
+ * eso.
  */
-function guardarTareaLocalStorage() {}
-
-/**
- * Agregar una tarea al DOM. Esto dependerá de si se tiene activo el filtro o
- * no.
- */
-function addTareaVisual() {}
+function procedimientoAgregarTarea() {
+  tarea = getDatosTareaForm();
+  tareasObj = getTareasLocalStorage();
+  console.log("Tarea");
+  console.log(tarea);
+  console.log();
+  saveTareaLocalStorage(tareasObj, tarea);
+  // Obtener lista de tareas actual.
+  const tareasActualesDom = document.getElementById("lista-tareas");
+  addTareaDom(tarea, tareasActualesDom);
+}
 
 /* ------------------------------ GUARDAR TAREA ----------------------------- */
 
@@ -187,6 +222,9 @@ todoForm.addEventListener("submit", (e) => {
       // Cerramos el modal una vez guardado. Esperar n segundos.
       closeModal(e.target);
     }, 3000);
+
+    // Agregar tarea al LocalStorage y al DOM.
+    procedimientoAgregarTarea();
   } else {
     missingInputModal.style.display = "block";
   }
