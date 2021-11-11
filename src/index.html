@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="css/config.css">
   <link rel="stylesheet" href="css/tareas-container.css">
   <link rel="stylesheet" href="css/lista-tareas.css">
+  <link rel="stylesheet" href="css/modal.css">
 
   <!-- SCRIPTS -->
   <!-- 
@@ -69,17 +70,17 @@
     <h1 class="tareas-container__title display-2">
       Lista de Tareas
     </h1>
-    <div class="lista-tareas">
-      <div class="tareas-container__opciones">
-        <div class="ver-todos-container">
-          <input type="checkbox" title="Ver todos" name="ver-todos"
-            id="filtro-ver-todos">
-          <label for="ver-todos">Ver todos</label>
-        </div>
-        <button type="button" class="btn btn-primary">
-          Nueva
-        </button>
+    <div class="tareas-container__opciones">
+      <div class="ver-todos-container">
+        <input type="checkbox" title="Ver todos" name="ver-todos"
+          id="filtro-ver-todos">
+        <label for="ver-todos">Ver todos</label>
       </div>
+      <button type="button" class="btn btn-primary" id="agregar-tarea" target-modal="#modal-nueva-tarea">
+        Nueva
+      </button>
+    </div>
+    <div class="lista-tareas" id="lista-tareas">
       <div class="tarea">
         <div class="tarea__info">
           <h2 class="tarea__info--title">Comprar Árbol de Navidad</h2>
@@ -110,7 +111,46 @@
   </main>
 
   <!-- MODAL -->
-  
+  <div class="modal hide" id="modal-nueva-tarea">
+    <div class="modal-content">
+      <!-- div.modal-header{Encabezado}+div.modal-body{Cuerpo}+div.modal-footer{Footer} -->
+      <!-- 
+        Agregué algunos estilos de CSS provisionales para que el botón no se
+        quedara con el alto al máximo y se estirara. 
+      -->
+      <div class="modal-header">
+        <h2>Agregar tarea</h2>
+        <!-- 
+          El botón se ve algo estirado en mi caso, aunque no sé muy bien por qué. 
+        -->
+        <button class="modal-header__close-button"
+          data-dismiss="#modal-test">X</button>
+      </div>
+      <div class="modal-body">
+        <div class="indicador-campos-incompletos">Campos incompletos</div>
+        <form action="" method="post" class="modal-body__form">
+          <div class="modal-body__form-item">
+            <label for="titulo">Título</label>
+            <input type="text" name="titulo" title="Título">
+          </div>
+
+          <div class="modal-body__form-item">
+            <label for="descripcion">Descripción</label>
+            <textarea name="descripcion" title="Descripción" id="" cols=""
+              rows="3"></textarea>
+          </div>
+
+          <div class="modal-body__form-item">
+            <label for="fecha">Fecha</label>
+            <input type="date" name="fecha" id="" title="Fecha">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success">Guardar</button>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
