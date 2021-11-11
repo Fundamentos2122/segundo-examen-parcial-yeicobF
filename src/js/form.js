@@ -151,18 +151,25 @@ function saveTareaLocalStorage(tareasObj, tarea) {
   localStorage.setItem(tareasLocalStorageKey, tareasString);
 }
 
-/** Actualizar el LocalStorage. */
-function updateLocalStorage(tareasObj, tarea) {
+/**
+ * Actualizar el LocalStorage para indicar si una tarea ya fue terminada o no.
+ *
+ * Se podría hacer más general, pero al menos por propósitos del ejercicio, solo
+ * lo haré con dicha propiedad.
+ */
+function updateCompletadaLocalStorage(tareasObj, { id, completada }) {
   console.log("Update local storage");
-
+  console.log(id);
+  console.log(completada);
   // Buscar tarea para actualizar esa en específico.
   // Vamos a buscar el índice de la que se actualizará.
-  const indexTareaActualizar = tareasObj.findIndex((t) => t.id === tarea.id);
+  const indexTareaActualizar = tareasObj.findIndex((t) => t.id === id);
   console.log(indexTareaActualizar);
   // Reemplazar antigua tarea con la nueva en el índice en donde se encontró.
   if (indexTareaActualizar >= 0) {
     console.log("Se encontró el elemento.");
-    tareasObj[indexTareaActualizar] = tarea;
+
+    tareasObj[indexTareaActualizar]["completada"] = completada;
 
     tareasString = JSON.stringify(tareasObj);
     localStorage.setItem(tareasLocalStorageKey, tareasString);
@@ -387,10 +394,21 @@ listaTareas.addEventListener("change", (e) => {
       //
       // https://stackoverflow.com/a/67352460/13562806
       tarea.classList.add(class_tarea_completada);
+      // Hay que esconder el elemento si es que no está el filtro para ver
+      // todos.
+      if (!filtroVerTodos.checked) {
+        tarea.classList.remove(class_show_tarea);
+      }
     } else {
       tarea.classList.remove(class_tarea_completada);
     }
+
+    const datosParaActualizarLs = {
+      id: tarea.id,
+      completada: target.checked,
+    };
+
     // Actualizar el Local Storage.
-    updateLocalStorage(tareasObj, tarea);
+    updateCompletadaLocalStorage(tareasObj, datosParaActualizarLs);
   }
 });
