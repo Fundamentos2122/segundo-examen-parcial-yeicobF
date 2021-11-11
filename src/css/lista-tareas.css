@@ -1,7 +1,7 @@
 /* Estilos para las tareas en específico. */
 
 .lista-tareas {
-  padding: 1em;
+  padding: 0 1em 1em;
   flex-basis: 100%;
 }
 
