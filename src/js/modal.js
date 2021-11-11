@@ -12,7 +12,7 @@ const class_hide = "hide";
 const class_show = "show";
 
 btnAgregar.addEventListener("click", (e) => {
-  console.log(e);
+  // console.log(e);
   // Si se da click al botón de agregar tweet, hay que abrir el modal.
   openModal(e);
 });
@@ -24,7 +24,7 @@ btnAgregar.addEventListener("click", (e) => {
 Array.from(modales).forEach((modal) => {
   // console.log("Modal" + modal);
   modal.addEventListener("click", (e) => {
-    // Si se presiona el botón para cerrar modal.
+    // Si se presiona el botón para cerrar o guardar modal.
     // console.log("Click cerrar modal evento: " + e.target);
     // console.log("Modal" + this);
     if (
@@ -56,6 +56,22 @@ function openModal(e) {
 function closeModal(button) {
   modal_header = button.parentNode;
   modal_content = modal_header.parentNode;
+
+  // Quitar indicador de que faltan campos si es que lo tiene.
+  console.log(modal_content.children);
+  // Recorrer los hijos hasta llegar al botón para quitar la clase.
+  // modal-content > modal-body > indicador-campos-incompletos
+  modal_body = modal_content.children["modal-body"];
+  console.log(modal_body);
+  indicador = modal_body.children["indicador-campos-incompletos"];
+  // Escondemos el elemento si es que existe.
+  indicador.style.display = "none";
+
+  // Array.from(children)
+  //   .filter((e) => e.classList.contains("modal-body"))
+  //   .filter((e) => e.classList.contains("indicador-campos-completos"))
+  //   .classList.toggle("show");
+
   modal = modal_content.parentNode;
 
   modal.classList.toggle(class_show);
