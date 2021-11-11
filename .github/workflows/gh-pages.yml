@@ -12,10 +12,12 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   # Permite ejecutar el workflow manualmente desde la pestaña de "Actions" en
   # GitHub.
-  workflow_dispatch:
+  # workflow_dispatch:
     # Solo quiero que se pueda ejecutar manualmente en main.
-    branches:
-      - main
+    # - Lo intenté, pero no se pudo. Sigue habiendo posibilidad de ejcutar el
+    # workflow desde cualquier branch, y eso no es lo que quiero.
+    # branches:
+    #   - main
 
 jobs:
   # https://docs.github.com/en/actions/learn-github-actionsworkflow-syntax-for-github-actions#jobsjob_id

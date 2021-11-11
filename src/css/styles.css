@@ -1,0 +1,46 @@
+*, *::after, *::before {
+  line-height: 1.5;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
+/*
+  Contenedor de la lista de tareas.  Pensarlo primero para celulares.
+*/
+.lista-tareas__container {
+  width: 100%;
+  display: flex;
+  transition: width 0.2s ease-out;
+}
+
+.lista-tareas__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .2em .5em;
+  background-color: #18a4bc;
+}
+
+/* Contenedor de las opciones: ver todos, nueva. */
+.opciones {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: .1em;
+}
+
+@media (min-width: 576px) {
+  .lista-tareas__container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .lista-tareas__container {
+    max-width: 720px;
+  }
+}
