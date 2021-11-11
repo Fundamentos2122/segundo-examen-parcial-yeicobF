@@ -1,12 +1,28 @@
 /* Estilos para las tareas en específico. */
 
+/* 
+Mostar elementos con flex. Especificidad para que funcione el show-flex a pesar
+de que haya otro display indicado.
+*/
+.tarea.show-flex {
+  display: flex;
+}
+
 .lista-tareas {
   padding: 0 1em 1em;
   flex-basis: 100%;
 }
 
+/* 
+Ocultar tareas por default para cargar todas al inicio y solo mostrarlas en
+lugar de cargarlas cuando el usuario lo pida. Que solo estén ocultas.
+
+Aunque me imagino que, en cuando a performance, sería mejor solo cargar lo
+necesario y después cargar lo demás si es requerido.
+*/
 .tarea {
-  display: flex;
+  /* display: flex; */
+  display: none;
   flex-wrap: wrap;
   border-top: solid 0.1px lightgray;
   padding: 1em;
