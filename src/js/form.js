@@ -21,7 +21,8 @@ const missingInputModal = document.getElementById(indicador_campos_incompletos);
 /** Modal que indica que los campos están bien. */
 const completeInputModal = document.getElementById("info-campos-completos");
 
-const todoKey = "todoList";
+/** Llave del LocalStorage. */
+const tareasLocalStorageKey = "tareas";
 
 /* ---------------------------- OBJETOS DEL FORM ---------------------------- */
 
@@ -91,7 +92,66 @@ function showMissingInputModal(id_indicador_campos_completos) {
   missingInputModal.style.display = "block";
 }
 
+/* ------------------------------ LocalStorage ------------------------------ */
 /* -------------------------- Guardar datos de form ------------------------- */
+
+/** Obtener tareas del LocalStorage y regresar como JSON. */
+function getTareasLocalStorage() {
+  const tareasLs = localStorage.getItem(tareasLocalStorageKey);
+
+  return JSON.parse(tareasLs);
+}
+
+/** Agregar tarea al LocalStorage como string. */
+function addTareaLocalStorage(tareasObj, tarea) {
+  tareasObj.push(tarea);
+
+  tareasString = JSON.stringify(tareasObj);
+  localStorage.setItem(tareasLocalStorageKey);
+}
+
+/** Agrega tarea al DOM. */
+function addTareaDom(tareaObj, listaTareasDom) {
+  const nuevaTarea = document.createElement("div");
+  nuevaTarea.className = "tarea";
+
+  nuevaTarea.innerHTML = `
+    <div class="tarea__info">
+      <h2 class="tarea__info--title">
+        ${tareaObj.titulo}
+      </h2>
+    `;
+  /**
+   * Fecha con formato dd/mm/AAAA
+   * - La fecha del input se guarda con el formato: AAAA-MM-DD o nada.
+   */
+  if (tareaObj.fecha) {
+    // Generar array de tamaño 3.
+    [year, month, day] = tareaObj.fecha.split("-");
+    // Definir objeto con los valores que utilizamos.
+    fechaFormatoLocal = {
+      year,
+      month,
+      day,
+    };
+    // Solo agregar el tiempo si es que lo hay.
+    nuevaTarea.innerHTML += `
+    <time datetime="${tareaObj.fecha}" class="tarea__info--time">
+      ${fechaFormatoLocal.day}/${fechaFormatoLocal.month}/${fechaFormatoLocal.year}
+    </time>`;
+  }
+  // Cerrar el tag.
+  nuevaTarea.innerHTML += "</div>";
+  // Descripción.
+  nuevaTarea.innerHTML += `
+    <p>${tareaObj.descripcion}</p>
+    <div class="tarea__check">
+      <input type="checkbox" title="Completada" name="completada" id="">
+      <label for="completada">Completada</label>
+    </div>
+  `;
+  listaTareasDom.appendChild(nuevaTarea);
+}
 
 /**
  * Guardar una tarea en el LocalStorage.
@@ -117,6 +177,7 @@ todoForm.addEventListener("submit", (e) => {
     // console.log(e.target);
     // Ocultar modal, pero esperar un momento.
     missingInputModal.style.display = "none";
+    // Mostrar mensaje de que se ingresaron los datos correctamente.
     completeInputModal.style.display = "block";
     setTimeout(() => {
       // Ocultamos el indicador de que fue correcto el input.
@@ -125,7 +186,7 @@ todoForm.addEventListener("submit", (e) => {
       todoList.reset();
       // Cerramos el modal una vez guardado. Esperar n segundos.
       closeModal(e.target);
-    }, 3500);
+    }, 3000);
   } else {
     missingInputModal.style.display = "block";
   }
