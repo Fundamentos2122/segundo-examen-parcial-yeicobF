@@ -76,11 +76,11 @@
           id="filtro-ver-todos">
         <label for="ver-todos">Ver todos</label>
       </div>
-      <button type="button" class="btn btn-primary">
+      <button type="button" class="btn btn-primary" id="agregar-tarea" target-modal="#modal-nueva-tarea">
         Nueva
       </button>
     </div>
-    <div class="lista-tareas">
+    <div class="lista-tareas" id="lista-tareas">
       <div class="tarea">
         <div class="tarea__info">
           <h2 class="tarea__info--title">Comprar Árbol de Navidad</h2>
@@ -111,7 +111,7 @@
   </main>
 
   <!-- MODAL -->
-  <div class="modal show" id="modal">
+  <div class="modal hide" id="modal-nueva-tarea">
     <div class="modal-content">
       <!-- div.modal-header{Encabezado}+div.modal-body{Cuerpo}+div.modal-footer{Footer} -->
       <!-- 
