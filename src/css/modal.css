@@ -75,3 +75,8 @@ display: block;
   /* No mostrar de base, sino con la clase show. */
   display: none;
 }
+
+/* Botón en estado inactivo. */
+.unactive-btn {
+  background-color: var(--color-success-darked);
+}

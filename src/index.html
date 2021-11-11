@@ -26,7 +26,7 @@
     haber sido otorgadas a elementos más importantes.
   -->
   <link rel="preload" href="js/modal.js" as="script">
-  <link rel="preload" href="js/validador-campos-form.js" as="script">
+  <link rel="preload" href="js/form.js" as="script">
   <link rel="preload"
     href="https://fundamentos2122.github.io/framework-css-yeicobF/css/frameworks.css"
     as="style">
@@ -58,7 +58,7 @@
       ejecutará el código.
   -->
   <script defer src="js/modal.js"></script>
-  <script defer src="js/validador-campos-form.js"></script>
+  <script defer src="js/form.js"></script>
   <title>
     Lista de tareas | FDW - Examen 2P | Miércoles, 10 de noviembre del 2021
   </title>
@@ -151,7 +151,11 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success">Guardar</button>
+        <!-- 
+          Deshabilitar botón desde el inicio. Ya que tenga datos, habilitarlo.
+        -->
+        <button disabled id="guardar-tarea" type="button"
+          class="modal-footer__save btn btn-success">Guardar</button>
       </div>
     </div>
   </div>

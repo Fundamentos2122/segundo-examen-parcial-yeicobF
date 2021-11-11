@@ -24,13 +24,14 @@ btnAgregar.addEventListener("click", (e) => {
 Array.from(modales).forEach((modal) => {
   // console.log("Modal" + modal);
   modal.addEventListener("click", (e) => {
-    // Si se presiona el botón para cerrar modal.
+    // Si se presiona el botón para cerrar o guardar modal.
     // console.log("Click cerrar modal evento: " + e.target);
     // console.log("Modal" + this);
     if (
       e.target &&
       e.target.tagName === "BUTTON" &&
-      e.target.classList.contains("modal-header__close-button")
+      (e.target.classList.contains("modal-header__close-button") ||
+        e.target.classList.contains("modal-footer__save"))
     ) {
       // Pasamos el modal para luego acceder al padre y cerrarlo.
       closeModal(e.target);
