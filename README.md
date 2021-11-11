@@ -26,6 +26,8 @@ es lo que tendremos que hacer.
     - [Parámetros obligatorios para el archivo](#parámetros-obligatorios-para-el-archivo)
     - [Instalación de la GitHub Action: `actions-gh-pages` en repositorio](#instalación-de-la-github-action-actions-gh-pages-en-repositorio)
     - [Ejecutar GitHub Action en `push` y `pull request` a `main`](#ejecutar-github-action-en-push-y-pull-request-a-main)
+  - [Resultados de publicación en `branch` `gh-pages` mediante **GitHub Actions**](#resultados-de-publicación-en-branch-gh-pages-mediante-github-actions)
+    - [Screenshots de cómo se ve esto en GitHub](#screenshots-de-cómo-se-ve-esto-en-github)
   - [Fuentes](#fuentes)
 
 ## Fecha de inicio y de entrega
@@ -63,7 +65,7 @@ siguientes puntos:
 
 Para esto, quise crear una rama vacía en donde solo se encuentre el código que
 se suba automáticamente con GitHub Actions, por lo que seguí lo que indicaba la
-siguiente respuesta de Stack Overflow:
+siguiente respuesta de **Stack Overflow**:
 
 > [How to create a new (and empty!) "root" branch?](https://stackoverflow.com/a/60821184/13562806 'How to create a new (and empty!) "root" branch?')
 >
@@ -286,13 +288,13 @@ importantes.
 
 ### Screenshots de cómo se ve esto en GitHub
 
-|                                                                                        Imagen                                                                                        | Descripción |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------: |
-|                [GitHub Actions - Runs from all workflows](screenshots/github-actions/runs-all-workflows-1-10-NOV-2021.png "GitHub Actions - Runs from all workflows")                |             |
-| [GitHub Actions - Runs for only gh-pages.yaml workflow](screenshots/github-actions/runs-gh-pages-workflow-1-10-NOV-2021.png "GitHub Actions - Runs for only gh-pages.yaml workflow") |             |
-|                  [GitHub Actions - Workflow file in GitHub](screenshots/github-actions/workflow-file-1-10-NOV-2021.png "GitHub Actions - Workflow file in GitHub")                   |             |
-|         [GitHub Actions - Workflow jobs and their statuses](screenshots/github-actions/workflow-jobs-1-10-NOV-2021.png "GitHub Actions - Workflow jobs and their statuses")          |             |
-|                      [GitHub Actions - 1 workflow summary](screenshots/github-actions/workflow-summary-1-10-NOV-2021.png "GitHub Actions - 1 workflow summary")                      |             |
+|                                                                                        Imagen                                                                                         |              Descripción               |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------: |
+|                ![GitHub Actions - Runs from all workflows](screenshots/github-actions/runs-all-workflows-1-10-NOV-2021.png "GitHub Actions - Runs from all workflows")                |        Runs from all workflows         |
+| ![GitHub Actions - Runs for only gh-pages.yaml workflow](screenshots/github-actions/runs-gh-pages-workflow-1-10-NOV-2021.png "GitHub Actions - Runs for only gh-pages.yaml workflow") | Runs for only `gh-pages.yaml` workflow |
+|                  ![GitHub Actions - Workflow file in GitHub](screenshots/github-actions/workflow-file-1-10-NOV-2021.png "GitHub Actions - Workflow file in GitHub")                   |        Workflow file in GitHub         |
+|         ![GitHub Actions - Workflow jobs and their statuses](screenshots/github-actions/workflow-jobs-1-10-NOV-2021.png "GitHub Actions - Workflow jobs and their statuses")          |    Workflow jobs and their statuses    |
+|                      ![GitHub Actions - 1 workflow summary](screenshots/github-actions/workflow-summary-1-10-NOV-2021.png "GitHub Actions - 1 workflow summary")                      |           1 workflow summary           |
 
 ## Fuentes
 
