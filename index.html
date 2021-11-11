@@ -72,16 +72,45 @@
     <div class="lista-tareas">
       <div class="tareas-container__opciones">
         <div class="ver-todos-container">
-          <input type="checkbox" name="ver-todos" id="filtro-ver-todos">
+          <input type="checkbox" title="Ver todos" name="ver-todos"
+            id="filtro-ver-todos">
           <label for="ver-todos">Ver todos</label>
         </div>
         <button type="button" class="btn btn-primary">
           Nueva
         </button>
       </div>
+      <div class="tarea">
+        <div class="tarea__info">
+          <h2 class="tarea__info--title">Comprar Árbol de Navidad</h2>
+          <time datetime="2021-09-11" class="tarea__info--time">9/11/2021</time>
+        </div>
+        <p>Ir al super por un arbolito de navidad.</p>
+        <div class="tarea__check">
+          <input type="checkbox" title="Completada" name="completada" id="">
+          <label for="completada">Completada</label>
+        </div>
+      </div>
+      <div class="tarea tarea__completada">
+        <div class="tarea__info">
+          <h2 class="tarea__info--title">
+            Revisar examen
+          </h2>
+          <time datetime="2021-09-11" class="tarea__info--time">9/11/2021</time>
+        </div>
+        <p>
+          Revisar los exámenes de Fundamentos para el segundo parcial.
+        </p>
+        <div class="tarea__check">
+          <input type="checkbox" title="Completada" name="completada" id="">
+          <label for="completada">Completada</label>
+        </div>
+      </div>
     </div>
   </main>
 
+  <!-- MODAL -->
+  
 </body>
 
 </html>
