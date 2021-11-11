@@ -28,11 +28,19 @@
   display: flex;
   padding: 1em;
   flex-grow: 1;
-  /* font-size: 1em; */
+  font-size: 1.2em;
   justify-content: space-between;
   flex-basis: 100%;
   align-items: center;
 }
+
+/* Contenedor con el checkbox y label para filtrar elementos. */
+.ver-todos-container {
+  display: flex;
+  gap: .3em;
+  justify-content: space-between;
+  align-items: center;
+  }
 
 /* @media (min-width: 576px) {
   .tareas__container {
@@ -42,9 +50,9 @@
 
 /* Fuente base más pequeña para pantallas más pequeñas. */
 @media (max-width: 576px) {
-  :root {
+  /* :root {
     font-size: 14px;
-  }
+  } */
 }
 
 /* @media (min-width: 768px) {
