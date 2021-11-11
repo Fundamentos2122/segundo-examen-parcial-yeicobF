@@ -13,7 +13,7 @@
    * workspace con su configuración. Por lo que vi, si tenemos abierto otro
    * workspace aunque este esté dentro, no mostrará las variables.
    */
-  "cssvar.files": ["css/*.css"],
+  "cssvar.files": ["src/css/config.css"],
   "cssvar.extensions": ["css"],
 
   // Quiero ver los archivos ocultos de git (.git) en este workspace para poder

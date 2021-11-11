@@ -31,7 +31,7 @@
   flex-grow: 1;
   justify-content: flex-end;
   font-size: 0.9em;
-  color: hsl(0, 0%, 30%);
+  color: var(--color-dark-gray);
 }
 
 /* Indicar si la tarea se completó o no. */
