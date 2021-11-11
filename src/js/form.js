@@ -323,7 +323,7 @@ filtroVerTodos.addEventListener("change", (e) => {
     // Convertir NodeList a array para poder iterar y utilizar funciones como
     // filter.
     Array.from(tareasArray)
-      // Obtenemos elementos que no tienen clase de mostrar.
+      // Obtenemos elementos que no tienen clase de mostrar para mostrar todos.
       .filter((tarea) => !tarea.classList.contains(class_show_tarea))
       // Agregamos a los elementos sin la clase, la clase.
       .forEach((tareaSinMostrar) =>
@@ -332,6 +332,17 @@ filtroVerTodos.addEventListener("change", (e) => {
   }
   // No mostrar todos, solo los que no han sido completados.
   else {
+    // Obtener las tareas completadas y quitarles la clase que las muestra.
+    Array.from(tareasArray)
+      .filter((tarea) => tarea.classList.contains(class_tarea_completada))
+      .forEach((completada) => completada.classList.remove(class_show_tarea));
+    //
+    //     Array.from(tareasSinCompletar).forEach((tarea) => {
+    //       tarea.classList.add(class_show_tarea);
+    //     });
+    //     Array.from(tareasCompletadas).forEach((tarea) => {
+    //       tarea.classList.remove(classList.remove(class_show_tarea));
+    //     });
   }
 });
 
@@ -403,14 +414,13 @@ listaTareas.addEventListener("change", (e) => {
       // Hay que esconder el elemento si es que no está el filtro para ver
       // todos.
       if (!filtroVerTodos.checked) {
-        setTimeout(()=> {
+        setTimeout(() => {
           tarea.classList.remove(class_show_tarea);
-        }, 300)
+        }, 300);
       }
     } else {
       tarea.classList.remove(class_tarea_completada);
     }
-
 
     const datosParaActualizarLs = {
       id: tarea.id,
