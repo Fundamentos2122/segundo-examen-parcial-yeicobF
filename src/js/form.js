@@ -12,7 +12,20 @@ const btnGuardarTarea = document.getElementById(id_btn_guardar_tareas);
 
 const todoForm = document.forms["todoList"];
 
+/** Obtener inputs. */
+const inputs = document.querySelectorAll("#formulario input");
+
+console.log(inputs);
+
 const todoKey = "todoList";
+
+/* ---------------------------- OBJETOS DEL FORM ---------------------------- */
+
+/** Indicador de validez de los campos. */
+const camposValidos = {
+  titulo: false,
+  descripcion: false,
+}
 
 /* -------------------------------- FUNCIONES ------------------------------- */
 
@@ -53,8 +66,6 @@ todoForm.addEventListener("submit", (e) => {
   e.preventDefault();
   if (areInputsValid(this)) {
     showMissingInputModal(indicador_campos_completos);
-  }
-  else {
-
+  } else {
   }
 });
