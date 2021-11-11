@@ -25,11 +25,11 @@
 /* Contenedor de las opciones: ver todos, nueva. */
 .tareas-container__opciones {
   display: flex;
+  padding: 1em;
+  flex-grow: 1;
   /* font-size: 1em; */
-  flex-basis: 1;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1em;
 }
 
 /* @media (min-width: 576px) {

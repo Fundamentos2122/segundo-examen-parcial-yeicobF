@@ -1,0 +1,69 @@
+.modal-header {
+  align-items: center;
+  padding: 1em;
+}
+
+.modal-header__close-button {
+  height: fit-content;
+}
+
+.modal-body {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 1em;
+  border-bottom: 0;
+}
+
+.modal-body >* {
+  flex-grow: 1;
+}
+
+.modal-body__form {
+  padding: 1em 0;
+  display: flex;
+  flex-wrap: wrap;
+  /* Espacio entre filas. */
+  row-gap: 1em;
+}
+
+.modal-body__form-item {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-body__form-item > label {
+  flex-basis: 20%;
+}
+
+.modal-body__form-item > textarea {
+  resize: none;
+}
+
+.modal-body__form-item > input,
+.modal-body__form-item > textarea {
+  flex-basis: 70%;
+  border: solid 1px lightgray;
+  border-radius: 5px;
+  padding: 0.8em;
+  font-size: 1em;
+}
+
+.modal-body__form-item > input[type="date"] {
+  font-size: 1.05em;
+  color: var(--color-dark-gray);
+}
+
+/* --------------------- INDICADOR DE CAMPOS INCOMPLETOS -------------------- */
+
+.indicador-campos-incompletos {
+  --strong-color: #bb3f4b;
+  padding: .5em 1em;
+  background-color: #e07c84;
+  color: var(--strong-color);
+  border: solid 1px var(--strong-color);
+  font-weight: 400;
+  font-size: 1.1em;
+  border-radius: 4px;
+}

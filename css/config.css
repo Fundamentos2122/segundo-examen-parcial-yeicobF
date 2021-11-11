@@ -4,13 +4,18 @@
   line-height: 1.5;
 }
 
+:root {
+  --color-dark-gray: hsl(0, 0%, 30%);
+}
+
 body {
   display: flex;
   justify-content: center;
   background-color: white;
 }
 
-h1 {
+/* Aplicar los siguientes estilos a los hedings. */
+:is(h1, h2, h3, h4, h5, h6) {
   margin-bottom: 0;
 }
 
