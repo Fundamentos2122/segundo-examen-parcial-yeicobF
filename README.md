@@ -292,7 +292,7 @@ importantes.
 | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------: |
 |                ![GitHub Actions - Runs from all workflows](screenshots/github-actions/runs-all-workflows-1-10-NOV-2021.png "GitHub Actions - Runs from all workflows")                |        Runs from all workflows         |
 | ![GitHub Actions - Runs for only gh-pages.yaml workflow](screenshots/github-actions/runs-gh-pages-workflow-1-10-NOV-2021.png "GitHub Actions - Runs for only gh-pages.yaml workflow") | Runs for only `gh-pages.yaml` workflow |
-|                  ![GitHub Actions - Workflow file in GitHub](screenshots/github-actions/workflow-file-1-10-NOV-2021.png "GitHub Actions - Workflow file in GitHub")                   |        Workflow file in GitHub         |
+|                  ![GitHub Actions - Workflow file in GitHub](screenshots/github-actions/workflow-file-1-10-NOV-2021.jpeg "GitHub Actions - Workflow file in GitHub")                  |        Workflow file in GitHub         |
 |         ![GitHub Actions - Workflow jobs and their statuses](screenshots/github-actions/workflow-jobs-1-10-NOV-2021.png "GitHub Actions - Workflow jobs and their statuses")          |    Workflow jobs and their statuses    |
 |                      ![GitHub Actions - 1 workflow summary](screenshots/github-actions/workflow-summary-1-10-NOV-2021.png "GitHub Actions - 1 workflow summary")                      |           1 workflow summary           |
 
