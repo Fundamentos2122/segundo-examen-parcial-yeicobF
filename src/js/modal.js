@@ -1,4 +1,4 @@
-import {class_show, class_show_flex, closeModal} from "./elementos-generales.js";
+// import {class_show, class_show_flex, closeModal} from "./elementos-generales.js";
 // import { class_show_flex, closeModal } from "elementos-generales";
 
 /* -------------------------------- VARIABLES ------------------------------- */
@@ -28,8 +28,6 @@ function openModal(e, showClass = class_show) {
   // modal.classList.toggle(class_show);
   modal.classList.toggle(showClass);
 }
-
-
 
 btnAgregar.addEventListener("click", (e) => {
   // console.log(e);

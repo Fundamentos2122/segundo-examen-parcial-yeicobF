@@ -44,4 +44,4 @@ function closeModal(button, showClass = class_show) {
 }
 
 // Exportamos para utilizar en otros archivos.
-export { class_show, class_show_flex, closeModal };
+// export { class_show, class_show_flex, closeModal };

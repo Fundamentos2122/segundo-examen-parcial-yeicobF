@@ -1,4 +1,4 @@
-import {class_show_flex, closeModal} from "./elementos-generales.js";
+// import {class_show_flex, closeModal} from "./elementos-generales.js";
 // import {class_show_flex, closeModal} from "elementos-generales";
 
 /**

@@ -14,8 +14,6 @@ Aunque me imagino que, en cuando a performance, sería mejor solo cargar lo
 necesario y después cargar lo demás si es requerido.
 */
 .tarea {
-  width: 0;
-  flex-grow: 1;
   transition: 
     all 0.2s ease-out, 
     background-color 0.15s ease-out;
