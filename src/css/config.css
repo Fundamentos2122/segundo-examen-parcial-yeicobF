@@ -13,3 +13,13 @@ body {
 h1 {
   margin-bottom: 0;
 }
+
+/* input[type="checkbox"][name="ver-todos"] */
+input[type="checkbox"] {
+  /* Cambiamos color del checkbox. */
+  accent-color: var(--color-primary);
+}
+
+.hide {
+  display: none;
+}

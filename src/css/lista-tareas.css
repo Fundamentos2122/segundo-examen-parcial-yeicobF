@@ -7,8 +7,9 @@
 
 .tarea {
   display: flex;
-  border-top: solid 1px hsl(1 1% 50%);
-  padding: .2em 0;
+  flex-wrap: wrap;
+  border-top: solid 0.1px lightgray;
+  padding: 1em;
 }
 
 /* Información principal de la tarea. */
@@ -20,20 +21,34 @@
   align-items: top;
 }
 
+.tarea__info--title {
+  font-size: 1.5em;
+}
+
+/* Alinear tiempo a la derecha por si se hace un wrap. */
+.tarea__info--time {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  font-size: 0.9em;
+  color: hsl(0, 0%, 30%);
+}
+
 /* Indicar si la tarea se completó o no. */
 .tarea__check {
   display: flex;
   flex-grow: 1;
-  justify-content: end;
-  align-items: bottom;
+  justify-content: flex-end;
+  align-items: center;
 }
+
+/* .tarea__check > input[type="checkbox"] {
+  accent-color: var(--color-success);
+} */
 
 /* Color de tarea completada. */
 .tarea__completada {
   background-color: #a8c4ac;
 }
 
-/* Clase para mostrar u ocultar elementos. */
-.show {
-  display: none;
-}
+
