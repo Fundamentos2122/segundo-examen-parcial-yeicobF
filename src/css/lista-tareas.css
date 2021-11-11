@@ -1,0 +1,33 @@
+/* Estilos para las tareas en específico. */
+
+.lista-tareas {
+  padding: 1em;
+}
+
+.tarea {
+  display: flex;
+  border-top: solid 1px hsl(1 1% 50%);
+  padding: .2em 0;
+}
+
+/* Información principal de la tarea. */
+.tarea__info {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: top;
+}
+
+/* Indicar si la tarea se completó o no. */
+.tarea__check {
+  display: flex;
+  flex-grow: 1;
+  justify-content: end;
+  align-items: bottom;
+}
+
+/* Color de tarea completada. */
+.tarea__completada {
+  background-color: #a8c4ac;
+}

@@ -1,28 +1,35 @@
-/* Estilos para las tareas en específico. */
-
-.tarea {
+/*
+  Contenedor de la lista de tareas.  Pensarlo primero para celulares.
+*/
+.tareas__container {
+  width: 100%;
   display: flex;
-  border-top: solid 1px hsl(1 1% 50%);
+  transition: width 0.2s ease-out;
 }
 
-/* Información principal de la tarea. */
-.tarea__info {
+.tareas__title {
   display: flex;
-  flex-wrap: wrap;
-  flex-grow: 1;
-  justify-content: space-between;
-  align-items: top;
+  align-items: center;
+  justify-content: center;
+  padding: .2em .5em;
+  background-color: #18a4bc;
 }
 
-/* Indicar si la tarea se completó o no. */
-.tarea__check {
-  display: flex;
-  flex-grow: 1;
-  justify-content: end;
-  align-items: bottom;
+/* Contenedor de las opciones: ver todos, nueva. */
+.tareas__opciones {
+display: flex;
+justify-content: space-between;
+align-items: center;
 }
 
-/* Color de tarea completada. */
-.tarea__completada {
-  background-color: #a8c4ac;
+@media (min-width: 576px) {
+  .tareas__container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .tareas__container {
+    max-width: 720px;
+  }
 }
