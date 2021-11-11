@@ -22,7 +22,7 @@ const missingInputModal = document.getElementById(indicador_campos_incompletos);
 const completeInputModal = document.getElementById("info-campos-completos");
 
 /** Llave del LocalStorage. */
-const tareasLocalStorageKey = "tareas";
+const tareasLocalStorageKey = "fdw-second-exam_tareas-por-hacer";
 
 /** Filtro para ver todos los elementos en pantalla. */
 const filtroVerTodos = document.getElementById("filtro-ver-todos");
@@ -114,7 +114,11 @@ function showMissingInputModal(id_indicador_campos_completos) {
 function getDatosTareaForm() {
   // Crear un ID basado en tiempo.
   // https://stackoverflow.com/a/40591207/13562806
-  const id = (Date.now() + Math.random()).replace(".", "-");
+  // Se creaba con un punto en medio, por lo que lo reemplacé con un guión.
+  //
+  // .toString(36) convierte el número a base 36.
+  // https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
+  const id = `${Date.now()}-${Math.random()}`.toString(36).replace(".", "");
   const titulo = todoForm["titulo"].value;
   const descripcion = todoForm["descripcion"].value;
   const fecha = todoForm["fecha"].value;
@@ -145,6 +149,24 @@ function saveTareaLocalStorage(tareasObj, tarea) {
 
   tareasString = JSON.stringify(tareasObj);
   localStorage.setItem(tareasLocalStorageKey, tareasString);
+}
+
+/** Actualizar el LocalStorage. */
+function updateLocalStorage(tareasObj, tarea) {
+  console.log("Update local storage");
+
+  // Buscar tarea para actualizar esa en específico.
+  // Vamos a buscar el índice de la que se actualizará.
+  const indexTareaActualizar = tareasObj.findIndex((t) => t.id === tarea.id);
+  console.log(indexTareaActualizar);
+  // Reemplazar antigua tarea con la nueva en el índice en donde se encontró.
+  if (indexTareaActualizar >= 0) {
+    console.log("Se encontró el elemento.");
+    tareasObj[indexTareaActualizar] = tarea;
+
+    tareasString = JSON.stringify(tareasObj);
+    localStorage.setItem(tareasLocalStorageKey, tareasString);
+  }
 }
 
 /** Agrega tarea al DOM. */
@@ -256,7 +278,7 @@ todoForm.addEventListener("submit", (e) => {
       todoList.reset();
       // Cerramos el modal una vez guardado. Esperar n segundos.
       closeModal(e.target);
-    }, 3000);
+    }, 1500);
 
     // Agregar tarea al LocalStorage y al DOM.
     procedimientoAgregarTarea();
@@ -321,7 +343,8 @@ listaTareas.addEventListener("change", (e) => {
     // cambiar su color de fondo.
     //
     // - Esto se hace con un selector.
-    const tarea = target.closest("tarea");
+    const tarea = target.closest(".tarea");
+    // console.log(tarea);
 
     // Obtener contenido del LocalStorage.
     const tareasObj = getTareasLocalStorage();
@@ -338,9 +361,9 @@ listaTareas.addEventListener("change", (e) => {
     //
     // tareasObj.find((t) => t.id === tarea.id);
 
-    console.log(tareasObj);
     // Recorremos objeto JSON con los elementos del storage.
-    
+    // tareasObj es un arreglo de objetos: [{...}, {...}, {...}]
+    // console.log(tareasObj.find((t) => t.id === tarea.id));
 
     /* for (let key in tareasObj) {
       let currentLsElement = tareasObj[key];
@@ -368,6 +391,6 @@ listaTareas.addEventListener("change", (e) => {
       tarea.classList.remove(class_tarea_completada);
     }
     // Actualizar el Local Storage.
-    saveTareaLocalStorage(tareasObj, tarea);
+    updateLocalStorage(tareasObj, tarea);
   }
 });
