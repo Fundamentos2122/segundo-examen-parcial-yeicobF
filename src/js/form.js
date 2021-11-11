@@ -28,7 +28,7 @@ const tareasLocalStorageKey = "fdw-second-exam_tareas-por-hacer";
 const filtroVerTodos = document.getElementById("filtro-ver-todos");
 
 /** Todas las clases con las tareas de la lista. */
-const tareasArray = document.querySelector("#lista-tareas > .tarea");
+let tareasArray = document.querySelectorAll("#lista-tareas > .tarea");
 
 /** Mostrar tareas, pero con `display: flex;`. */
 const class_show_tarea = "show-flex";
@@ -139,7 +139,7 @@ function getTareasLocalStorage() {
   const tareasLs = localStorage.getItem(tareasLocalStorageKey);
   // Si el parse no es null, se utiliza su valor. Si sí es null, inicializar
   // arreglo vacío.
-  const tareasArray = JSON.parse(tareasLs) ?? [];
+  let tareasArray = JSON.parse(tareasLs) ?? [];
   return tareasArray;
 }
 
@@ -315,10 +315,16 @@ document.addEventListener("DOMContentLoaded", (e) => {
  * Mostrar u ocultar elementos dependiendo del filtro.
  */
 filtroVerTodos.addEventListener("change", (e) => {
+  /** Todas las clases con las tareas de la lista. */
+  tareasArray = document.querySelectorAll("#lista-tareas > .tarea");
   if (e.target.checked) {
-    tareasArray
+    // https://developer.mozilla.org/es/docs/Web/API/NodeList
+    // 
+    // Convertir NodeList a array para poder iterar y utilizar funciones como
+    // filter.
+    Array.from(tareasArray)
       // Obtenemos elementos que no tienen clase de mostrar.
-      .filter((tarea) => !tarea.classList.includes(class_show_tarea))
+      .filter((tarea) => !tarea.classList.contains(class_show_tarea))
       // Agregamos a los elementos sin la clase, la clase.
       .forEach((tareaSinMostrar) =>
         tareaSinMostrar.classList.add(class_show_tarea),
