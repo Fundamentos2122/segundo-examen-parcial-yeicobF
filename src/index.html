@@ -26,6 +26,7 @@
     haber sido otorgadas a elementos más importantes.
   -->
   <link rel="preload" href="js/modal.js" as="script">
+  <link rel="preload" href="js/validador-campos-form.js" as="script">
   <link rel="preload"
     href="https://fundamentos2122.github.io/framework-css-yeicobF/css/frameworks.css"
     as="style">
@@ -57,6 +58,7 @@
       ejecutará el código.
   -->
   <script defer src="js/modal.js"></script>
+  <script defer src="js/validador-campos-form.js"></script>
   <title>
     Lista de tareas | FDW - Examen 2P | Miércoles, 10 de noviembre del 2021
   </title>
@@ -111,38 +113,40 @@
   </main>
 
   <!-- MODAL -->
-  <div class="modal" id="modal-nueva-tarea">
-    <div class="modal-content">
+  <div class="modal" id="modal-nueva-tarea" name="modal">
+    <div class="modal-content" name="modal-content">
       <!-- div.modal-header{Encabezado}+div.modal-body{Cuerpo}+div.modal-footer{Footer} -->
       <!-- 
         Agregué algunos estilos de CSS provisionales para que el botón no se
         quedara con el alto al máximo y se estirara. 
       -->
-      <div class="modal-header">
+      <div class="modal-header" name="modal-header">
         <h2>Agregar tarea</h2>
         <!-- 
           El botón se ve algo estirado en mi caso, aunque no sé muy bien por qué. 
         -->
-        <button class="modal-header__close-button"
-          data-dismiss="#modal-test">X</button>
+        <button class="modal-header__close-button btn btn-danger">X</button>
       </div>
-      <div class="modal-body">
-        <div class="indicador-campos-incompletos">Campos incompletos</div>
-        <form action="" method="post" class="modal-body__form">
+      <div class="modal-body" name="modal-body">
+        <div class="indicador-campos-incompletos" id="info-campos-incompletos"
+          name="indicador-campos-incompletos">
+          Campos incompletos
+        </div>
+        <form name="todoList" action="" method="post" class="modal-body__form">
           <div class="modal-body__form-item">
             <label for="titulo">Título</label>
-            <input type="text" name="titulo" title="Título">
+            <input required type="text" name="titulo" title="Título">
           </div>
 
           <div class="modal-body__form-item">
             <label for="descripcion">Descripción</label>
-            <textarea name="descripcion" title="Descripción" id="" cols=""
-              rows="3"></textarea>
+            <textarea required name="descripcion" title="Descripción" id=""
+              cols="" rows="3"></textarea>
           </div>
 
           <div class="modal-body__form-item">
             <label for="fecha">Fecha</label>
-            <input type="date" name="fecha" id="" title="Fecha">
+            <input required type="date" name="fecha" id="" title="Fecha">
           </div>
         </form>
       </div>

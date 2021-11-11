@@ -10,6 +10,7 @@ display: block;
 
 .modal-header__close-button {
   height: fit-content;
+  cursor: pointer;
 }
 
 .modal-body {
@@ -71,4 +72,6 @@ display: block;
   font-weight: 400;
   font-size: 1.1em;
   border-radius: 4px;
+  /* No mostrar de base, sino con la clase show. */
+  display: none;
 }
