@@ -1,13 +1,5 @@
 /* Estilos para las tareas en específico. */
 
-/* 
-Mostar elementos con flex. Especificidad para que funcione el show-flex a pesar
-de que haya otro display indicado.
-*/
-.tarea.show-flex {
-  display: flex;
-}
-
 .lista-tareas {
   padding: 0 1em 1em;
   flex-basis: 100%;

@@ -3,6 +3,10 @@
 display: block; 
 } */
 
+.modal-content {
+  height: fit-content;
+}
+
 .modal-header {
   align-items: center;
   padding: 1em;
@@ -59,6 +63,11 @@ display: block;
 .modal-body__form-item > input[type="date"] {
   font-size: 1.05em;
   color: var(--color-dark-gray);
+}
+
+.modal-body__form-item > label {
+  font-size: 1.1em;
+  font-weight: 600;
 }
 
 /* --------------------- INDICADOR DE CAMPOS INCOMPLETOS -------------------- */
