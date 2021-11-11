@@ -24,6 +24,9 @@ const completeInputModal = document.getElementById("info-campos-completos");
 /** Llave del LocalStorage. */
 const tareasLocalStorageKey = "tareas";
 
+/** Filtro para ver todos los elementos en pantalla. */
+const filtroVerTodos = document.getElementById("filtro-ver-todos");
+
 /* ---------------------------- OBJETOS DEL FORM ---------------------------- */
 
 /** Indicador de validez de los campos. */
@@ -110,6 +113,8 @@ function getDatosTareaForm() {
     titulo,
     descripcion,
     fecha,
+    // Inicializar que la tarea no esté completada.
+    completada: false,
   });
 }
 
@@ -133,8 +138,21 @@ function saveTareaLocalStorage(tareasObj, tarea) {
 /** Agrega tarea al DOM. */
 function addTareaDom(tareaObj, listaTareasDom) {
   const nuevaTarea = document.createElement("div");
-  nuevaTarea.className = "tarea";
+  // Mostrar la tarea si no está completada (a menos que tenga el filtro).
+  // Mostrar como tarea completada si lo está. Esto cambiará el color de fondo.
+  let classes = `tarea ${
+    !tareaObj.completada ? "show-flex" : "tarea__completada"
+  }`;
 
+  // Mostrar elemento si se que el filtro está activo y no tiene ya la clase.
+  if (
+    filtroVerTodos.getAttribute("checked") &&
+    !classes.includes("show-flex")
+  ) {
+    classes += "show-flex";
+  }
+
+  nuevaTarea.className = classes;
   /**
    * Cadena con todo el HTML para ponerlo en innerHTML al final ya que esté
    * todo formado. Si se pone el innerHTML en partes, se cierran automáticamente
@@ -173,7 +191,9 @@ function addTareaDom(tareaObj, listaTareasDom) {
   strInnerHTML += `
     <p>${tareaObj.descripcion}</p>
     <div class="tarea__check">
-      <input type="checkbox" title="Completada" name="completada" id="">
+      <input ${
+        tareaObj.completada ? "checked" : ""
+      } type="checkbox" title="Completada" name="completada" id="">
       <label for="completada">Completada</label>
     </div>
   `;
@@ -244,3 +264,5 @@ document.addEventListener("DOMContentLoaded", (e) => {
   // Agregar tareas al DOM.
   tareasObj.forEach((tarea) => addTareaDom(tarea, listaTareas));
 });
+
+/* ------------- EVENTO DE CUANDO SE MARCA TAREA COMO COMPLETADA ------------ */
