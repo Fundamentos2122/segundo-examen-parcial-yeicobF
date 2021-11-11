@@ -2,6 +2,7 @@
 
 .lista-tareas {
   padding: 1em;
+  flex-basis: 100%;
 }
 
 .tarea {
@@ -30,4 +31,9 @@
 /* Color de tarea completada. */
 .tarea__completada {
   background-color: #a8c4ac;
+}
+
+/* Clase para mostrar u ocultar elementos. */
+.show {
+  display: none;
 }

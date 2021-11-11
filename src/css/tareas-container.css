@@ -1,35 +1,50 @@
 /*
   Contenedor de la lista de tareas.  Pensarlo primero para celulares.
 */
-.tareas__container {
+.tareas-container {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   transition: width 0.2s ease-out;
+  flex-grow: 1;
 }
 
-.tareas__title {
+.tareas-container__title {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: .2em .5em;
   background-color: #18a4bc;
+  color: white;
+  font-weight: 400;
+  flex-basis: 100%;
+  text-align: center;
 }
 
 /* Contenedor de las opciones: ver todos, nueva. */
-.tareas__opciones {
+.tareas-container__opciones {
 display: flex;
+font-size: 1.2em;
+flex-basis: 1;
 justify-content: space-between;
 align-items: center;
 }
 
-@media (min-width: 576px) {
+/* @media (min-width: 576px) {
   .tareas__container {
     max-width: 540px;
+  }
+} */
+
+/* Fuente base más pequeña para pantallas más pequeñas. */
+@media (max-width: 576px) {
+  :root {
+    font-size: 14px;
   }
 }
 
 @media (min-width: 768px) {
-  .tareas__container {
-    max-width: 720px;
+  .tareas-container {
+    max-width: 768px;
   }
 }

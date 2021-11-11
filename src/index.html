@@ -38,6 +38,9 @@
   <link rel="stylesheet" href="css/styles.css">
 
   <!-- Locales -->
+  <link rel="stylesheet" href="css/config.css">
+  <link rel="stylesheet" href="css/tareas-container.css">
+  <link rel="stylesheet" href="css/lista-tareas.css">
 
   <!-- SCRIPTS -->
   <!-- 
@@ -58,17 +61,26 @@
     Lista de tareas | FDW - Examen 2P | Miércoles, 10 de noviembre del 2021
   </title>
 
-  <style>
-    body {
-      background-color: azure;
-    }
-
-  </style>
 </head>
 
-<body class="lista-tareas__container">
+<body>
 
-
+  <main class="tareas-container">
+    <h1 class="tareas-container__title display-2">
+      Lista de Tareas
+    </h1>
+    <div class="lista-tareas">
+      <div class="tareas-container__opciones">
+        <div class="ver-todos-container">
+          <input type="checkbox" name="ver-todos" id="filtro-ver-todos">
+          <label for="ver-todos">Ver todos</label>
+        </div>
+        <button type="button" class="btn btn-primary">
+          Nueva
+        </button>
+      </div>
+    </div>
+  </main>
 
 </body>
 
