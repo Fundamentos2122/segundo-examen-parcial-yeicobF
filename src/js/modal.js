@@ -30,8 +30,7 @@ Array.from(modales).forEach((modal) => {
     if (
       e.target &&
       e.target.tagName === "BUTTON" &&
-      (e.target.classList.contains("modal-header__close-button") ||
-        e.target.classList.contains("modal-footer__save"))
+      e.target.classList.contains("modal-header__close-button")
     ) {
       // Pasamos el modal para luego acceder al padre y cerrarlo.
       closeModal(e.target);

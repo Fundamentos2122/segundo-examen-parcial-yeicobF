@@ -128,33 +128,44 @@
         <button class="modal-header__close-button btn btn-danger">X</button>
       </div>
       <div class="modal-body" name="modal-body">
-        <div class="indicador-campos-incompletos" id="info-campos-incompletos"
-          name="indicador-campos-incompletos">
-          Campos incompletos
+        <div class="indicador-campos indicador-campos--incompletos"
+          id="info-campos-incompletos" name="indicador-campos-incompletos">
+          <p>Campos incompletos</p>
         </div>
-        <form id="formulario" name="todoList" action="" method="post" class="modal-body__form">
+        <div class="indicador-campos indicador-campos--completos"
+          id="info-campos-completos" name="indicador-campos-completos">
+          <p>¡Campos ingresados correctamente!</p>
+        </div>
+        <form id="formulario" name="todoList" action="" method="post"
+          class="modal-body__form">
           <div class="modal-body__form-item">
             <label for="titulo">Título</label>
-            <input required type="text" name="titulo" title="Título">
+            <input autocomplete="off" type="text" name="titulo" title="Título">
           </div>
 
           <div class="modal-body__form-item">
             <label for="descripcion">Descripción</label>
-            <textarea required name="descripcion" title="Descripción" id=""
-              cols="" rows="3"></textarea>
+            <!-- required -->
+            <textarea name="descripcion" title="Descripción" id="" cols=""
+              rows="3"></textarea>
           </div>
 
           <div class="modal-body__form-item">
             <label for="fecha">Fecha</label>
-            <input required type="date" name="fecha" id="" title="Fecha">
+            <!-- required -->
+            <input type="date" name="fecha" id="" title="Fecha">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <!-- 
           Deshabilitar botón desde el inicio. Ya que tenga datos, habilitarlo.
+
+          `disabled`
+
+          - Indicamos a qué form pertenece mediante su id.
         -->
-        <button disabled id="guardar-tarea" type="submit"
+        <button id="guardar-tarea" type="submit" form="formulario"
           class="modal-footer__save btn btn-success">Guardar</button>
       </div>
     </div>

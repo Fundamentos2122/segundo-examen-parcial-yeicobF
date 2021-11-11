@@ -63,17 +63,35 @@ display: block;
 
 /* --------------------- INDICADOR DE CAMPOS INCOMPLETOS -------------------- */
 
-.indicador-campos-incompletos {
-  --strong-color: #bb3f4b;
+.indicador-campos {
+  --color-campos-incompletos: #dd2a3c;
+  --bg-campos-incompletos: #f38b96;
+  --color-campos-completos: var(--color-success);
+  --bg-campos-completos: var(--color-light);
   padding: .5em 1em;
-  background-color: #e07c84;
-  color: var(--strong-color);
-  border: solid 1px var(--strong-color);
-  font-weight: 400;
+  font-weight: 600;
   font-size: 1.1em;
   border-radius: 4px;
   /* No mostrar de base, sino con la clase show. */
   display: none;
+}
+
+/* Centrar contenido del indicador de campos. */
+.indicador-campos > * {
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.indicador-campos--incompletos {
+  background-color: var(--bg-campos-incompletos);
+  color: var(--color-campos-incompletos);
+  border: solid 1px var(--bg-campos-incompletos);
+}
+
+.indicador-campos--completos {
+  background-color: var(--bg-campos-completos);
+  color: var(--color-campos-completos);
+  border: solid 1px var(--bg-campos-completos);
 }
 
 /* Botón en estado inactivo. */
