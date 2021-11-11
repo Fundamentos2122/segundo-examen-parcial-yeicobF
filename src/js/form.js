@@ -188,11 +188,9 @@ function addTareaDom(tareaObj, listaTareasDom) {
  * eso.
  */
 function procedimientoAgregarTarea() {
-  tarea = getDatosTareaForm();
-  tareasObj = getTareasLocalStorage();
-  console.log("Tarea");
-  console.log(tarea);
-  console.log();
+  const tarea = getDatosTareaForm();
+  const tareasObj = getTareasLocalStorage();
+
   saveTareaLocalStorage(tareasObj, tarea);
   // Obtener lista de tareas actual.
   const tareasActualesDom = document.getElementById("lista-tareas");
@@ -228,4 +226,21 @@ todoForm.addEventListener("submit", (e) => {
   } else {
     missingInputModal.style.display = "block";
   }
+});
+
+/* ------------------- CARGAR TAREAS AL ENTRAR A LA PÁGINA ------------------ */
+
+/** Cargar las tareas cuando se inicia la página. */
+document.addEventListener("DOMContentLoaded", (e) => {
+  // Obtener lista de tareas actual.
+  const listaTareas = document.getElementById("lista-tareas");
+  // console.log("lista tareas");
+  // console.log(listaTareas);
+
+  const tareasObj = getTareasLocalStorage();
+  // console.log("tareas obj");
+  // console.log(tareasObj);
+
+  // Agregar tareas al DOM.
+  tareasObj.forEach((tarea) => addTareaDom(tarea, listaTareas));
 });
