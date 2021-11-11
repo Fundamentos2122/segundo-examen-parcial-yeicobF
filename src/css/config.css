@@ -9,6 +9,7 @@
 }
 
 body {
+  min-width: 350px;
   display: flex;
   justify-content: center;
   background-color: white;
@@ -27,4 +28,10 @@ input[type="checkbox"] {
 
 .hide {
   display: none;
+}
+
+.container-fluid,
+.container-lg {
+  padding: 0;
+  transition: all 0.2s ease-out;
 }

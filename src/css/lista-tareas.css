@@ -10,6 +10,7 @@
   flex-wrap: wrap;
   border-top: solid 0.1px lightgray;
   padding: 1em;
+  row-gap: 1em;
 }
 
 /* Información principal de la tarea. */
@@ -18,7 +19,8 @@
   flex-wrap: wrap;
   flex-grow: 1;
   justify-content: space-between;
-  align-items: top;
+  flex-basis: 100%;
+  /* align-items: top; */
 }
 
 .tarea__info--title {
