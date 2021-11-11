@@ -1,3 +1,6 @@
+import {class_show, class_show_flex, closeModal} from "./elementos-generales.js";
+// import { class_show_flex, closeModal } from "elementos-generales";
+
 /* -------------------------------- VARIABLES ------------------------------- */
 const btnAgregar = document.getElementById("agregar-tarea");
 /**
@@ -9,12 +12,29 @@ const modales = document.getElementsByClassName("modal");
 const target_modal = "target-modal";
 /** Clase con la que se ocultan los elementos. */
 const class_hide = "hide";
-const class_show = "show";
+
+/* const class_show = "show";
+// Mostrar modal como flex para centrar elementos en pantalla.
+const class_show_flex = "show-flex"; */
+
+/**
+ * Función para abrir un modal. Le pasamos el modal al que pertenece el evento.
+ */
+function openModal(e, showClass = class_show) {
+  let modal_selector = e.target.getAttribute(target_modal);
+  let modal = document.querySelector(modal_selector);
+  // console.log("modal_selector" + modal_selector);
+  // console.log(modal);
+  // modal.classList.toggle(class_show);
+  modal.classList.toggle(showClass);
+}
+
+
 
 btnAgregar.addEventListener("click", (e) => {
   // console.log(e);
   // Si se da click al botón de agregar tweet, hay que abrir el modal.
-  openModal(e);
+  openModal(e, (showClass = class_show_flex));
 });
 
 /**
@@ -33,46 +53,7 @@ Array.from(modales).forEach((modal) => {
       e.target.classList.contains("modal-header__close-button")
     ) {
       // Pasamos el modal para luego acceder al padre y cerrarlo.
-      closeModal(e.target);
+      closeModal(e.target, (showClass = class_show_flex));
     }
   });
 });
-
-/**
- * Función para abrir un modal. Le pasamos el modal al que pertenece el evento.
- */
-function openModal(e) {
-  let modal_selector = e.target.getAttribute(target_modal);
-  let modal = document.querySelector(modal_selector);
-  // console.log("modal_selector" + modal_selector);
-  // console.log(modal);
-  modal.classList.toggle(class_show);
-}
-
-/**
- * Cerrar modal obteniendo el botón de cerrar como parámetro. Vamos subiendo de
- * de nivel de nodo hasta llegar al modal padre y quitar la clase `show`.
- */
-function closeModal(button) {
-  modal_header = button.parentNode;
-  modal_content = modal_header.parentNode;
-
-  // Quitar indicador de que faltan campos si es que lo tiene.
-  console.log(modal_content.children);
-  // Recorrer los hijos hasta llegar al botón para quitar la clase.
-  // modal-content > modal-body > indicador-campos-incompletos
-  modal_body = modal_content.children["modal-body"];
-  console.log(modal_body);
-  indicador = modal_body.children["indicador-campos-incompletos"];
-  // Escondemos el elemento si es que existe.
-  indicador.style.display = "none";
-
-  // Array.from(children)
-  //   .filter((e) => e.classList.contains("modal-body"))
-  //   .filter((e) => e.classList.contains("indicador-campos-completos"))
-  //   .classList.toggle("show");
-
-  modal = modal_content.parentNode;
-
-  modal.classList.toggle(class_show);
-}

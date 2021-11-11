@@ -1,3 +1,6 @@
+import {class_show_flex, closeModal} from "./elementos-generales.js";
+// import {class_show_flex, closeModal} from "elementos-generales";
+
 /**
  * Validar si todos los campos del form tienen contenido.
  */
@@ -33,6 +36,8 @@ let tareasArray = document.querySelectorAll("#lista-tareas > .tarea");
 /** Mostrar tareas, pero con `display: flex;`. */
 const class_show_tarea = "show-flex";
 
+
+
 /** Tarea completada. */
 const class_tarea_completada = "tarea__completada";
 
@@ -48,33 +53,6 @@ const camposValidos = {
 };
 
 /* -------------------------------- FUNCIONES ------------------------------- */
-/**
- * Cerrar modal obteniendo el botón de cerrar como parámetro. Vamos subiendo de
- * de nivel de nodo hasta llegar al modal padre y quitar la clase `show`.
- */
-function closeModal(button) {
-  modal_header = button.parentNode;
-  modal_content = modal_header.parentNode;
-
-  // Quitar indicador de que faltan campos si es que lo tiene.
-  console.log(modal_content.children);
-  // Recorrer los hijos hasta llegar al botón para quitar la clase.
-  // modal-content > modal-body > indicador-campos-incompletos
-  modal_body = modal_content.children["modal-body"];
-  console.log(modal_body);
-  indicador = modal_body.children["indicador-campos-incompletos"];
-  // Escondemos el elemento si es que existe.
-  indicador.style.display = "none";
-
-  // Array.from(children)
-  //   .filter((e) => e.classList.contains("modal-body"))
-  //   .filter((e) => e.classList.contains("indicador-campos-completos"))
-  //   .classList.toggle("show");
-
-  modal = modal_content.parentNode;
-
-  modal.classList.toggle(class_show);
-}
 
 /** Validar si un input es válido o no. */
 function validarInput(input, campo) {
@@ -284,7 +262,7 @@ todoForm.addEventListener("submit", (e) => {
       // Reiniciar formulario.
       todoList.reset();
       // Cerramos el modal una vez guardado. Esperar n segundos.
-      closeModal(e.target);
+      closeModal(e.target, (showClass = class_show_flex));
     }, 1500);
 
     // Agregar tarea al LocalStorage y al DOM.
@@ -416,7 +394,7 @@ listaTareas.addEventListener("change", (e) => {
       if (!filtroVerTodos.checked) {
         setTimeout(() => {
           tarea.classList.remove(class_show_tarea);
-        }, 300);
+        }, 200);
       }
     } else {
       tarea.classList.remove(class_tarea_completada);

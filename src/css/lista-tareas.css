@@ -1,13 +1,5 @@
 /* Estilos para las tareas en específico. */
 
-/* 
-Mostar elementos con flex. Especificidad para que funcione el show-flex a pesar
-de que haya otro display indicado.
-*/
-.tarea.show-flex {
-  display: flex;
-}
-
 .lista-tareas {
   padding: 0 1em 1em;
   flex-basis: 100%;
@@ -22,6 +14,8 @@ Aunque me imagino que, en cuando a performance, sería mejor solo cargar lo
 necesario y después cargar lo demás si es requerido.
 */
 .tarea {
+  width: 0;
+  flex-grow: 1;
   transition: 
     all 0.2s ease-out, 
     background-color 0.15s ease-out;
