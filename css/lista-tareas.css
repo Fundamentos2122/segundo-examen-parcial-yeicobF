@@ -10,6 +10,7 @@
   flex-wrap: wrap;
   border-top: solid 0.1px lightgray;
   padding: 1em;
+  row-gap: 1em;
 }
 
 /* Información principal de la tarea. */
@@ -18,7 +19,10 @@
   flex-wrap: wrap;
   flex-grow: 1;
   justify-content: space-between;
-  align-items: top;
+  flex-basis: 100%;
+  row-gap: .7em;
+  column-gap: .7em;
+  /* align-items: top; */
 }
 
 .tarea__info--title {
@@ -52,3 +56,15 @@
 }
 
 
+@media (max-width: 576px) {
+  .tarea__info {
+    flex-wrap: nowrap;
+  }
+  /* Que se divida en 3 partes el contenedor. */
+  .tarea__info--title {
+    flex: 2;
+  }
+  .tarea__info--time {
+    flex: 1;
+  }
+}
