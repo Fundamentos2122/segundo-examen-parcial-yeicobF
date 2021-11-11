@@ -11,6 +11,7 @@ de que haya otro display indicado.
 .lista-tareas {
   padding: 0 1em 1em;
   flex-basis: 100%;
+  transition: all 0.1s ease-in;
 }
 
 /* 
@@ -21,6 +22,9 @@ Aunque me imagino que, en cuando a performance, sería mejor solo cargar lo
 necesario y después cargar lo demás si es requerido.
 */
 .tarea {
+  transition: 
+    all 0.2s ease-out, 
+    background-color 0.15s ease-out;
   /* display: flex; */
   display: none;
   flex-wrap: wrap;

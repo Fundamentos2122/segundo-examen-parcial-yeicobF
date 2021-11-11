@@ -319,7 +319,7 @@ filtroVerTodos.addEventListener("change", (e) => {
   tareasArray = document.querySelectorAll("#lista-tareas > .tarea");
   if (e.target.checked) {
     // https://developer.mozilla.org/es/docs/Web/API/NodeList
-    // 
+    //
     // Convertir NodeList a array para poder iterar y utilizar funciones como
     // filter.
     Array.from(tareasArray)
@@ -403,11 +403,14 @@ listaTareas.addEventListener("change", (e) => {
       // Hay que esconder el elemento si es que no está el filtro para ver
       // todos.
       if (!filtroVerTodos.checked) {
-        tarea.classList.remove(class_show_tarea);
+        setTimeout(()=> {
+          tarea.classList.remove(class_show_tarea);
+        }, 300)
       }
     } else {
       tarea.classList.remove(class_tarea_completada);
     }
+
 
     const datosParaActualizarLs = {
       id: tarea.id,
