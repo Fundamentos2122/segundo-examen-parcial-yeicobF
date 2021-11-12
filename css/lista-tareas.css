@@ -74,14 +74,14 @@ necesario y después cargar lo demás si es requerido.
 
 
 @media (min-width: 576px) {
-  .tarea__info {
+  /* .tarea__info {
     flex-wrap: nowrap;
-  }
+  } */
   /* Que se divida en 4 partes el contenedor. */
-  .tarea__info--title {
+  /* .tarea__info--title {
     flex: 3;
   }
   .tarea__info--time {
     flex: 1;
-  }
+  } */
 }
