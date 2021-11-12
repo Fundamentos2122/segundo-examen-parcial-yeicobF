@@ -9,7 +9,7 @@
 }
 
 body {
-  min-width: 460px;
+  min-width: 360px;
   display: flex;
   justify-content: center;
   background-color: white;

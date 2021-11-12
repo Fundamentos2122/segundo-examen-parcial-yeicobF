@@ -12,16 +12,21 @@
 
 .tareas-container__title {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: .5em;
+  padding: 1.5em;
   background-color: #18a4bc;
   color: white;
   font-weight: 400;
   flex-basis: 100%;
   text-align: center;
+  row-gap: 1.5em;
 }
 
+.tareas-container__title > * {
+  flex-basis: 100%;
+}
 
 /* Contenedor de las opciones: ver todos, nueva. */
 .tareas-container__opciones {
@@ -47,6 +52,12 @@
     max-width: 540px;
   }
 } */
+
+@media (min-width: 768px) {
+  .tareas-container__title {
+    padding: 3.5em;
+  }
+}
 
 /* Fuente base más pequeña para pantallas más pequeñas. */
 @media (max-width: 576px) {
