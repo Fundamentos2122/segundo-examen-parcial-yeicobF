@@ -36,8 +36,6 @@ let tareasArray = document.querySelectorAll("#lista-tareas > .tarea");
 /** Mostrar tareas, pero con `display: flex;`. */
 const class_show_tarea = "show-flex";
 
-
-
 /** Tarea completada. */
 const class_tarea_completada = "tarea__completada";
 
@@ -392,9 +390,10 @@ listaTareas.addEventListener("change", (e) => {
       // Hay que esconder el elemento si es que no está el filtro para ver
       // todos.
       if (!filtroVerTodos.checked) {
-        setTimeout(() => {
-          tarea.classList.remove(class_show_tarea);
-        }, 200);
+        tarea.classList.remove(class_show_tarea);
+        // setTimeout(() => {
+        //   tarea.classList.remove(class_show_tarea);
+        // }, 100);
       }
     } else {
       tarea.classList.remove(class_tarea_completada);
