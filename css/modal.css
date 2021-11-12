@@ -70,6 +70,10 @@ display: block;
   font-weight: 600;
 }
 
+.modal-footer__save {
+  font-size: 1.2em;
+}
+
 /* --------------------- INDICADOR DE CAMPOS INCOMPLETOS -------------------- */
 
 .indicador-campos {

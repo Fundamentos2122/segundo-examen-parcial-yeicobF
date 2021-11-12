@@ -39,6 +39,8 @@
   align-items: center;
 }
 
+
+
 /* Contenedor con el checkbox y label para filtrar elementos. */
 .ver-todos-container {
   display: flex;

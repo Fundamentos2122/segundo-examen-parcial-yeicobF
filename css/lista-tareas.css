@@ -5,6 +5,8 @@
   flex-basis: 100%;
   transition: all 0.1s ease-in;
   max-width: 100%;
+  /* Que se pueda romper la línea para que no ocurra overflow con el heading. */
+  line-break: anywhere;
 }
 
 /* 
@@ -75,9 +77,9 @@ necesario y después cargar lo demás si es requerido.
   .tarea__info {
     flex-wrap: nowrap;
   }
-  /* Que se divida en 3 partes el contenedor. */
+  /* Que se divida en 4 partes el contenedor. */
   .tarea__info--title {
-    flex: 2;
+    flex: 3;
   }
   .tarea__info--time {
     flex: 1;
