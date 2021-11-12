@@ -4,6 +4,7 @@
   padding: 0 1em 1em;
   flex-basis: 100%;
   transition: all 0.1s ease-in;
+  max-width: 100%;
 }
 
 /* 
@@ -23,11 +24,13 @@ necesario y después cargar lo demás si es requerido.
   border-top: solid 0.1px lightgray;
   padding: 1em;
   row-gap: 1em;
+  border-radius: 6px;
 }
 
 /* Información principal de la tarea. */
 .tarea__info {
   display: flex;
+  max-width: 100%;
   flex-wrap: wrap;
   flex-grow: 1;
   justify-content: space-between;
@@ -68,7 +71,7 @@ necesario y después cargar lo demás si es requerido.
 }
 
 
-@media (max-width: 576px) {
+@media (min-width: 576px) {
   .tarea__info {
     flex-wrap: nowrap;
   }
