@@ -9,7 +9,12 @@
 }
 
 body {
-  min-width: 360px;
+  /* 
+  Aumenta el tamaño mínimo para que no haya problemas con visualizar el 
+  contenido ni con que el modal se comience a ver feo. Aunque en ese caso el 
+  modal debería ser el que tiene un tamaño mínimo.
+  */
+  min-width: 430px;
   display: flex;
   justify-content: center;
   background-color: white;
