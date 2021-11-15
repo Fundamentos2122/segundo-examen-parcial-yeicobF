@@ -5,6 +5,7 @@ display: block;
 
 .modal-content {
   height: fit-content;
+  margin: auto;
 }
 
 .modal-header {
